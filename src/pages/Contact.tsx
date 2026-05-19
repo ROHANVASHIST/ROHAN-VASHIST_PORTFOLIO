@@ -58,8 +58,8 @@ export default function Contact() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16"
       >
-        <h1 className="text-4xl font-bold mb-4 text-gray-900">Let's Connect</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Let's Connect</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.
         </p>
       </motion.div>
@@ -68,15 +68,15 @@ export default function Contact() {
         {/* Contact Info */}
         <div className="space-y-8">
           <div>
-            <h3 className="text-sm font-semibold text-cyan-600 uppercase tracking-wider mb-2">Email</h3>
-            <p className="text-gray-900 font-medium">rohanvashist01@gmail.com</p>
+            <h3 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-2">Email</h3>
+            <p className="text-gray-900 dark:text-gray-100 font-medium">rohanvashist01@gmail.com</p>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-cyan-600 uppercase tracking-wider mb-2">Social</h3>
+            <h3 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-2">Social</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-cyan-600 transition-colors">LinkedIn</a>
-              <a href="#" className="text-gray-500 hover:text-cyan-600 transition-colors">GitHub</a>
-              <a href="#" className="text-gray-500 hover:text-cyan-600 transition-colors">Twitter</a>
+              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">LinkedIn</a>
+              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">GitHub</a>
+              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Twitter</a>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
+                <label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
                 <input
                   required
                   type="text"
@@ -95,11 +95,11 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
-                  className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400 dark:text-white"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</label>
+                <label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
                 <input
                   required
                   type="email"
@@ -108,7 +108,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="john@example.com"
-                  className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400 dark:text-white"
                 />
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Contact() {
             {/* Dynamic Extra Fields */}
             {EXTRA_FIELDS.map(field => (
               <div key={field.id} className="space-y-2">
-                <label htmlFor={field.id} className="text-sm font-medium text-gray-700">{field.label}</label>
+                <label htmlFor={field.id} className="text-sm font-medium text-gray-700 dark:text-gray-300">{field.label}</label>
                 <input
                   required={field.required}
                   type={field.type}
@@ -125,13 +125,13 @@ export default function Contact() {
                   value={formData[field.id]}
                   onChange={handleChange}
                   placeholder={field.placeholder}
-                  className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400 dark:text-white"
                 />
               </div>
             ))}
 
             <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-gray-700">Message</label>
+              <label htmlFor="message" className="text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
               <textarea
                 required
                 id="message"
@@ -140,7 +140,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="How can I help you?"
-                className="w-full px-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400 resize-none"
+                className="w-full px-4 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all placeholder:text-gray-400 dark:text-white resize-none"
               />
             </div>
 

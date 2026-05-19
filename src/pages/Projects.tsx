@@ -24,7 +24,7 @@ export default function Projects() {
   return (
     <main className="max-w-6xl mx-auto py-20 px-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
-        <h1 className="text-4xl font-bold text-gray-800">Projects & Work</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Projects & Work</h1>
         
         <div className="flex flex-wrap gap-2">
           <button
@@ -32,7 +32,7 @@ export default function Projects() {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedTech === null 
                 ? 'bg-cyan-600 text-white' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
             }`}
           >
             All
@@ -44,7 +44,7 @@ export default function Projects() {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedTech === tech 
                   ? 'bg-cyan-600 text-white' 
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
             >
               {tech}
@@ -62,23 +62,24 @@ export default function Projects() {
             <motion.div
               layout
               key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               whileHover={{ 
                 scale: 1.02,
                 y: -4,
                 transition: { duration: 0.2, ease: "easeOut" } 
               }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.2 }}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-xl transition-shadow p-6 flex flex-col h-full cursor-pointer"
+              transition={{ duration: 0.4 }}
+              className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-xl dark:hover:shadow-cyan-900/20 transition-all p-6 flex flex-col h-full cursor-pointer"
             >
-              <h3 className="text-2xl font-bold mb-2 text-gray-800">{project.title}</h3>
-              <p className="text-gray-600 mb-4 flex-grow line-clamp-3">{project.description}</p>
+              <h3 className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100">{project.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">{project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech: string) => (
-                  <span key={tech} className="bg-cyan-50 text-cyan-700 px-2.5 py-0.5 rounded-md text-xs font-medium border border-cyan-100">
+                  <span key={tech} className="bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 px-2.5 py-0.5 rounded-md text-xs font-medium border border-cyan-100 dark:border-cyan-800">
                     {tech}
                   </span>
                 ))}
