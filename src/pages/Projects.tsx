@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, Filter, Search } from 'lucide-react';
 import projectsData from '../data/projects.json';
 
 export default function Projects() {
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const allTechnologies = useMemo(() => {
     const techs = new Set<string>();
@@ -15,84 +17,106 @@ export default function Projects() {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    if (!selectedTech) return projectsData.projects;
-    return projectsData.projects.filter(project => 
-      project.technologies.includes(selectedTech)
-    );
-  }, [selectedTech]);
+    return projectsData.projects.filter(project => {
+      const matchesTech = !selectedTech || project.technologies.includes(selectedTech);
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                           project.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesTech && matchesSearch;
+    });
+  }, [selectedTech, searchQuery]);
 
   return (
-    <main className="max-w-6xl mx-auto py-20 px-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Projects & Work</h1>
-        
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setSelectedTech(null)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              selectedTech === null 
-                ? 'bg-cyan-600 text-white' 
-                : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
-          >
-            All
-          </button>
-          {allTechnologies.map(tech => (
+    <main className="max-w-6xl mx-auto py-32 px-6">
+      <div className="mb-20">
+        <h1 className="text-sm font-black text-cyan-600 dark:text-cyan-400 uppercase tracking-[0.3em] mb-4">Portfolio</h1>
+        <h2 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white leading-[0.9] mb-12">
+          Case Studies & <br /> <span className="text-gray-400">Technical Work.</span>
+        </h2>
+
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between py-8 border-y border-gray-100 dark:border-gray-800">
+          <div className="flex flex-wrap gap-2 items-center">
+            <div className="flex items-center gap-2 mr-4 text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest">
+              <Filter size={14} /> Category:
+            </div>
             <button
-              key={tech}
-              onClick={() => setSelectedTech(tech)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedTech === tech 
-                  ? 'bg-cyan-600 text-white' 
-                  : 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+              onClick={() => setSelectedTech(null)}
+              className={`px-6 py-2 rounded-xl text-xs font-black tracking-widest transition-all ${
+                selectedTech === null 
+                  ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-xl' 
+                  : 'bg-gray-50 text-gray-400 dark:bg-white/5 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
-              {tech}
+              ALL
             </button>
-          ))}
+            {allTechnologies.map(tech => (
+              <button
+                key={tech}
+                onClick={() => setSelectedTech(tech)}
+                className={`px-6 py-2 rounded-xl text-xs font-black tracking-widest transition-all ${
+                  selectedTech === tech 
+                    ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 shadow-xl' 
+                    : 'bg-gray-50 text-gray-400 dark:bg-white/5 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300'
+                }`}
+              >
+                {tech.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative w-full lg:w-72">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="Search projects..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-white/5 border border-transparent focus:border-cyan-600 dark:focus:border-cyan-400 rounded-2xl outline-none text-sm font-bold transition-all text-gray-900 dark:text-white"
+            />
+          </div>
         </div>
       </div>
 
       <motion.div 
         layout
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid md:grid-cols-2 lg:grid-cols-2 gap-12"
       >
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project: any) => (
+          {filteredProjects.map((project: any, idx: number) => (
             <motion.div
               layout
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              whileHover={{ 
-                scale: 1.02,
-                y: -4,
-                transition: { duration: 0.2, ease: "easeOut" } 
-              }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
-              className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-xl dark:hover:shadow-cyan-900/20 transition-all p-6 flex flex-col h-full cursor-pointer"
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="group"
             >
-              <h3 className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100">{project.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.technologies.map((tech: string) => (
-                  <span key={tech} className="bg-cyan-50 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 px-2.5 py-0.5 rounded-md text-xs font-medium border border-cyan-100 dark:border-cyan-800">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              
-              <Link 
-                to={`/projects/${project.id}`} 
-                className="inline-flex items-center text-cyan-600 hover:text-cyan-700 font-semibold transition-colors"
-              >
-                View Details
-                <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+              <Link to={`/projects/${project.id}`}>
+                <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-900 rounded-[3rem] overflow-hidden mb-8 shadow-sm transition-shadow group-hover:shadow-2xl">
+                  <motion.img 
+                    src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="px-4">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 3).map((tech: string) => (
+                      <span key={tech} className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-600">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 text-lg leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white group-hover:gap-4 transition-all">
+                    View Case Study <ArrowRight size={16} className="text-cyan-600" />
+                  </div>
+                </div>
               </Link>
             </motion.div>
           ))}
@@ -100,8 +124,14 @@ export default function Projects() {
       </motion.div>
 
       {filteredProjects.length === 0 && (
-        <div className="text-center py-20">
-          <p className="text-gray-500 text-lg">No projects found for the selected technology.</p>
+        <div className="text-center py-40 bg-gray-50 dark:bg-white/5 rounded-[3rem] border-2 border-dashed border-gray-200 dark:border-gray-800">
+          <p className="text-gray-400 text-xl font-bold">No projects matched your criteria.</p>
+          <button 
+            onClick={() => { setSelectedTech(null); setSearchQuery(''); }}
+            className="mt-6 text-cyan-600 font-black uppercase tracking-widest hover:underline"
+          >
+            Clear Filters
+          </button>
         </div>
       )}
     </main>

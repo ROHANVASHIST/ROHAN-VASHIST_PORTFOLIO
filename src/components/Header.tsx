@@ -1,31 +1,145 @@
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
+const NAV_LINKS = [
+  { name: 'About', path: '/about' },
+  { name: 'Projects', path: '/projects' },
+  { name: 'Expertise', path: '/expertise' },
+  { name: 'Services', path: '/services' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Resume', path: '/resume' },
+  { name: 'Contact', path: '/contact' },
+];
+
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <header className="sticky top-0 bg-white dark:bg-gray-900 shadow-sm z-50 border-b border-gray-100 dark:border-gray-800 transition-colors">
-      <nav className="flex justify-between items-center p-4 max-w-6xl mx-auto">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="text-2xl font-bold text-gray-800 dark:text-white">RV</Link>
-          <ul className="hidden md:flex gap-6 text-gray-600 dark:text-gray-400 font-medium">
-            <li><Link to="/about" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">About</Link></li>
-            <li><Link to="/projects" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Projects</Link></li>
-            <li><Link to="/expertise" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Expertise</Link></li>
-            <li><Link to="/services" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Services</Link></li>
-            <li><Link to="/blog" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Blog</Link></li>
-            <li><Link to="/resume" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Resume</Link></li>
-            <li><Link to="/contact" className="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Contact</Link></li>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 px-4 md:px-8 pt-4 md:pt-6 pointer-events-none`}
+    >
+      <nav className={`
+        mx-auto max-w-6xl w-full pointer-events-auto
+        transition-all duration-500 ease-in-out
+        ${isScrolled 
+          ? 'bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl py-2 px-3 md:py-3 md:px-6 rounded-[2rem] shadow-2xl shadow-black/5 border border-white/20 dark:border-white/5' 
+          : 'bg-transparent py-4 px-2 rounded-none shadow-none border-transparent'
+        }
+        flex items-center justify-between
+      `}>
+        <div className="flex items-center gap-12">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 group"
+          >
+            <div className="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-cyan-600/20 group-hover:rotate-6 transition-transform">
+              RV
+            </div>
+            <span className={`hidden sm:block font-black text-xl tracking-tight ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white md:text-white'}`}>
+              Rohan Vashist
+            </span>
+          </Link>
+
+          <ul className="hidden lg:flex items-center gap-1">
+            {NAV_LINKS.map((link) => (
+              <li key={link.path}>
+                <Link 
+                  to={link.path}
+                  className={`
+                    relative px-4 py-2 rounded-xl text-sm font-bold transition-all
+                    ${location.pathname === link.path 
+                      ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-50/50 dark:bg-cyan-900/20' 
+                      : `hover:bg-gray-100 dark:hover:bg-white/5 ${isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-gray-600 dark:text-gray-400 md:text-gray-200'}`
+                    }
+                  `}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="flex items-center gap-4">
+
+        <div className="flex items-center gap-3">
           <ThemeToggle />
-          <button className="md:hidden p-2 text-gray-600 dark:text-gray-400">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+          
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`
+              lg:hidden p-2 rounded-2xl transition-all
+              ${isScrolled 
+                ? 'bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white' 
+                : 'bg-white/10 backdrop-blur-md text-white border border-white/20'
+              }
+            `}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+
+          <Link to="/contact" className="hidden sm:block">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`
+                px-6 py-2.5 rounded-2xl font-bold text-sm shadow-xl transition-all
+                bg-cyan-600 text-white shadow-cyan-600/20 hover:bg-cyan-500
+              `}
+            >
+              Let's Talk
+            </motion.button>
+          </Link>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            className="absolute top-full left-4 right-4 mt-4 bg-white dark:bg-gray-950 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-white/5 p-8 lg:hidden pointer-events-auto"
+          >
+            <ul className="space-y-4">
+              {NAV_LINKS.map((link) => (
+                <li key={link.path}>
+                  <Link 
+                    to={link.path}
+                    className={`
+                      flex items-center justify-between p-4 rounded-3xl transition-all
+                      ${location.pathname === link.path 
+                        ? 'bg-cyan-600 text-white shadow-xl shadow-cyan-600/20' 
+                        : 'bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10'
+                      }
+                    `}
+                  >
+                    <span className="font-bold text-lg">{link.name}</span>
+                    <ChevronRight size={20} className={location.pathname === link.path ? 'opacity-100' : 'opacity-30'} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
