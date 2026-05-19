@@ -9,6 +9,8 @@ export default function Header() {
           <li><Link to="/about" className="hover:text-cyan-600">About</Link></li>
           <li><Link to="/projects" className="hover:text-cyan-600">Projects</Link></li>
           <li><Link to="/expertise" className="hover:text-cyan-600">Expertise</Link></li>
+          <li><Link to="/services" className="hover:text-cyan-600">Services</Link></li>
+          <li><Link to="/resume" className="hover:text-cyan-600">Resume</Link></li>
           <li><Link to="/contact" className="hover:text-cyan-600">Contact</Link></li>
         </ul>
       </nav>

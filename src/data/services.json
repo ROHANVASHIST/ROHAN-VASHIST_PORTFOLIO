@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+      "title": "Energy Consulting",
+      "description": "Expert advice on sustainable energy transitions and biomass technology.",
+      "deliverables": ["Feasibility studies", "Sustainability roadmap", "Technical reports"]
+    },
+    {
+      "title": "Web Development",
+      "description": "Creating robust, scalable web applications.",
+      "deliverables": ["Custom React apps", "Backend API development", "System architecture"]
+    }
+  ]
+}

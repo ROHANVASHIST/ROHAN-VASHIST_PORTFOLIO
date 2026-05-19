@@ -6,12 +6,49 @@
       "description": "A customized Notion-like productivity platform designed for engineering teams to manage projects, track thermodynamics data, and optimize sustainability workflows.",
       "technologies": ["React", "Node.js", "MongoDB"],
       "image": "/images/projects/motion.png",
+      "images": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+      ],
       "github": "https://github.com/rohan/motion",
       "demo": "https://motion-ver-01.vercel.app",
       "featured": true,
       "keyFeatures": ["Custom database schema for engineering data", "Real-time collaboration", "Sustainability metrics dashboard"],
+      "problem": "Engineering teams lacked a unified platform to track complex thermodynamics data alongside project status, leading to fragmented information and slowed sustainability initiatives.",
+      "solution": "Developed a custom, Notion-like application tailored for engineering workflows, featuring a robust database schema for tracking technical metrics in real-time and providing actionable sustainability insights via a dedicated dashboard.",
       "learnings": "Deepened understanding of real-time state management and database optimization for complex data structures.",
       "status": "In Development"
+    },
+    {
+      "id": 2,
+      "title": "Bio-Energy Tracker",
+      "description": "An interactive dashboard for monitoring biomass energy production and carbon offset metrics in real-time.",
+      "technologies": ["Python", "D3.js", "Flask"],
+      "image": "/images/projects/bioenergy.png",
+      "github": "https://github.com/rohan/bioenergy",
+      "demo": "https://bioenergy-tracker.example.com",
+      "featured": false,
+      "keyFeatures": ["Real-time data ingestion", "Dynamic D3.js visualizations", "Carbon footprint calculator"],
+      "problem": "Bio-energy plants needed a way to visualize production data and carbon offsets to optimize operations.",
+      "solution": "Built a Python-based tracker with D3.js for high-fidelity data visualization.",
+      "learnings": "Improved skills in D3.js and handling real-time data streams.",
+      "status": "Completed"
+    },
+    {
+      "id": 3,
+      "title": "Hydrogen Storage Simulator",
+      "description": "A simulation tool for modeling thermodynamic properties and storage efficiency of hydrogen fuel cells.",
+      "technologies": ["Python", "React", "Tailwind CSS"],
+      "image": "/images/projects/hydrogen.png",
+      "github": "https://github.com/rohan/hydrogen",
+      "demo": "https://hydrogen-sim.example.com",
+      "featured": true,
+      "keyFeatures": ["Thermodynamic modeling engine", "Interactive simulation UI", "Performance benchmarking"],
+      "problem": "Researchers needed a more accessible way to run complex hydrogen storage simulations without deep coding knowledge.",
+      "solution": "Created a web-based simulator combining Python's scientific libraries with a modern React frontend.",
+      "learnings": "Learned how to bridge complex backend simulations with user-friendly frontend interfaces.",
+      "status": "Completed"
     }
   ]
 }

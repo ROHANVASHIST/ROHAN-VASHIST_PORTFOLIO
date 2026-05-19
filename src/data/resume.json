@@ -1,0 +1,18 @@
+{
+  "education": [
+    {
+      "institution": "University of Engineering",
+      "degree": "B.Sc. in Energy Systems",
+      "year": "2020-2024"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Tech Solutions Inc.",
+      "role": "Frontend Developer",
+      "period": "2024-Present",
+      "description": "Building interactive user interfaces and optimizing web performance."
+    }
+  ],
+  "skills": ["React", "TypeScript", "Node.js", "Tailwind CSS", "Firebase"]
+}
