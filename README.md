@@ -1,11 +1,37 @@
-<div align="center">
+# Rohan Vashist Portfolio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+This is a personal portfolio website showcasing engineering projects, research, and technical skills for Rohan Vashist.
 
-  <h1>Built with AI Studio</h2>
+## Tech Stack
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Framework**: React 19 + Vite
+- **Routing**: React Router
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Getting Started
 
-</div>
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (LTS version recommended)
+- npm
+
+### Installation
+
+1. Clone the repository (if applicable) or copy the project folder.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Deployment
+
+This app is designed to be deployed on platforms like Vercel or Netlify.
+1. Push your code to a GitHub repository.
+2. Import the repository into Vercel/Netlify.
+3. Configure environment variables if necessary.
+4. Deploy.

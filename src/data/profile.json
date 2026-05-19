@@ -1,0 +1,14 @@
+{
+  "name": "Rohan Vashist",
+  "headline": "Energy Engineer | Full-Stack Developer | Sustainability Innovator",
+  "bio": "I bridge the gap between heavy engineering systems and modern digital interfaces. Crafting optimized solutions for a cleaner, more efficient future through precision code and thermodynamics.",
+  "email": "rohan.vashist@example.com",
+  "linkedin": "https://linkedin.com/in/rrohanvashist",
+  "github": "https://github.com/rohanvashist",
+  "location": "New Delhi, India",
+  "education": {
+    "degree": "B.Tech in Energy Engineering",
+    "institution": "University School of Chemical Technology (USCT), GGSIPU",
+    "graduationYear": 2025
+  }
+}

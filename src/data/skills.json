@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "name": "Energy Engineering",
+      "skills": [
+        { "name": "Hydrogen Economy", "level": "Advanced" },
+        { "name": "Biomass Technology", "level": "Advanced" },
+        { "name": "Electrochemical Analysis", "level": "Intermediate" }
+      ]
+    },
+    {
+      "name": "Programming",
+      "skills": [
+        { "name": "JavaScript/TypeScript", "level": "Advanced" },
+        { "name": "React", "level": "Advanced" },
+        { "name": "Python", "level": "Intermediate" }
+      ]
+    }
+  ]
+}

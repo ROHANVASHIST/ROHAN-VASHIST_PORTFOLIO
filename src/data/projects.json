@@ -1,0 +1,17 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "MOTION.VER.01",
+      "description": "A customized Notion-like productivity platform designed for engineering teams to manage projects, track thermodynamics data, and optimize sustainability workflows.",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "image": "/images/projects/motion.png",
+      "github": "https://github.com/rohan/motion",
+      "demo": "https://motion-ver-01.vercel.app",
+      "featured": true,
+      "keyFeatures": ["Custom database schema for engineering data", "Real-time collaboration", "Sustainability metrics dashboard"],
+      "learnings": "Deepened understanding of real-time state management and database optimization for complex data structures.",
+      "status": "In Development"
+    }
+  ]
+}
