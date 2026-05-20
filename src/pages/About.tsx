@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import profileData from '../data/profile.json';
 import { ArrowRight, Download, GraduationCap, Briefcase } from 'lucide-react';
+import heroImage from '../assets/images/about_hero_banner_1779235498423.png';
 
 export default function About() {
   const containerVariants = {
@@ -26,7 +27,7 @@ export default function About() {
         animate="visible"
       >
         <div className="grid lg:grid-cols-12 gap-16 items-start">
-          <div className="lg:col-span-12 mb-16">
+          <div className="lg:col-span-12 mb-10">
             <motion.h1 
               variants={itemVariants}
               className="text-sm font-black text-cyan-600 dark:text-cyan-400 uppercase tracking-[0.3em] mb-4"
@@ -40,6 +41,20 @@ export default function About() {
               Engineer. Developer. <br /> <span className="text-gray-400">Strategist.</span>
             </motion.h2>
           </div>
+
+          {/* Hero Image Banner */}
+          <motion.div 
+            variants={itemVariants}
+            className="lg:col-span-12 mb-16 rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl shadow-gray-200/10 dark:shadow-none aspect-[16/9] md:aspect-[21/9] min-h-[300px] relative group"
+          >
+            <img 
+              src={heroImage} 
+              alt="Intersection of Mechanical Engineering and Software: blue blueprint schematics combined with crisp white lines of computer code" 
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/20 via-transparent to-transparent pointer-events-none" />
+          </motion.div>
 
           <div className="lg:col-span-7">
             <motion.section variants={itemVariants} className="mb-20">

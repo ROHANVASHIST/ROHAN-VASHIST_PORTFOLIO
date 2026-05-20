@@ -92,14 +92,16 @@ export default function Projects() {
               className="group"
             >
               <Link to={`/projects/${project.id}`}>
-                <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-900 rounded-[3rem] overflow-hidden mb-8 shadow-sm transition-shadow group-hover:shadow-2xl">
+                <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-900 rounded-[3rem] overflow-hidden mb-8 shadow-sm transition-all duration-500 ease-out group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.18)] dark:group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.25)] group-hover:-translate-y-2.5 relative">
                   <motion.img 
                     src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
                   />
+                  {/* Subtle color overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-cyan-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
-                <div className="px-4">
+                <div className="px-4 transition-all duration-500 ease-out group-hover:scale-[0.985] group-hover:opacity-95 origin-top">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech: string) => (
                       <span key={tech} className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-600">

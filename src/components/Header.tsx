@@ -116,7 +116,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="absolute top-full left-4 right-4 mt-4 bg-white dark:bg-gray-950 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-white/5 p-8 lg:hidden pointer-events-auto"
+            className="absolute top-full left-4 right-4 mt-4 bg-white/95 dark:bg-gray-950/95 backdrop-blur-2xl rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-white/5 p-6 md:p-8 lg:hidden pointer-events-auto max-h-[calc(100vh-140px)] overflow-y-auto overscroll-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             <ul className="space-y-4">
               {NAV_LINKS.map((link) => (

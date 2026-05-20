@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Search, Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import { Search, Calendar, Clock, ArrowRight, Tag, Plus, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const BLOG_POSTS = [];
+import { getBlogPosts, BlogPost } from '../lib/blogStore';
+import NewPostModal from '../components/NewPostModal';
 
 const CATEGORIES = ["All", "Engineering", "Software", "Sustainability", "AI"];
 
 export default function Blog() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredPosts = BLOG_POSTS.filter(post => {
+  useEffect(() => {
+    setPosts(getBlogPosts());
+  }, []);
+
+  const handlePostCreated = (newPost: BlogPost) => {
+    setPosts(getBlogPosts());
+  };
+
+  const filteredPosts = posts.filter(post => {
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
@@ -20,18 +30,28 @@ export default function Blog() {
 
   return (
     <main className="max-w-6xl mx-auto py-20 px-6 mt-16 md:mt-0">
-      <div className="max-w-3xl mb-16">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl font-black text-gray-900 dark:text-white mb-6"
-        >
-          Insights & Articles
-        </motion.h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-          Deep dives into the intersection of engineering complexity and digital simplicity. 
-          Sharing what I learn about AI, sustainability, and software craft.
-        </p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16">
+        <div className="max-w-2xl">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl font-black text-gray-900 dark:text-white mb-6"
+          >
+            Insights & Articles
+          </motion.h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-sans">
+            Deep dives into the intersection of engineering complexity and digital simplicity. 
+            Sharing what I learn about AI, sustainability, and software craft.
+          </p>
+        </div>
+        <div className="flex-shrink-0 self-start md:self-center">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 px-6 py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-xl shadow-cyan-600/20 hover:scale-[1.02] active:scale-95 transition-all text-xs uppercase tracking-widest cursor-pointer"
+          >
+            <Plus size={16} /> Add Publication
+          </button>
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
@@ -60,8 +80,16 @@ export default function Blog() {
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 bg-gray-100 dark:bg-gray-800 border-none rounded-2xl text-sm focus:ring-2 focus:ring-cyan-600 dark:text-white transition-all"
+            className="w-full pl-11 pr-10 py-3 bg-gray-100 dark:bg-gray-800 border-none rounded-2xl text-sm focus:ring-2 focus:ring-cyan-600 dark:text-white transition-all"
           />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -124,14 +152,31 @@ export default function Blog() {
       </div>
 
       {filteredPosts.length === 0 && (
-        <div className="text-center py-32 bg-gray-50 dark:bg-gray-900/50 rounded-[3rem] border border-dashed border-gray-200 dark:border-gray-800">
-          <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Search className="w-8 h-8 text-gray-300 dark:text-gray-600" />
+        <div className="text-center py-20 bg-gray-50/50 dark:bg-gray-900/40 rounded-[2.5rem] border border-dashed border-gray-200 dark:border-gray-800 p-8 max-w-xl mx-auto">
+          <div className="w-14 h-14 bg-gray-100 dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Search className="w-6 h-6 text-gray-400" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No articles yet</h3>
-          <p className="text-gray-500 dark:text-gray-400 text-lg max-w-sm mx-auto">
-            I'm currently drafting some deep dives. Stay tuned for insights into engineering and software.
-          </p>
+          {posts.length === 0 ? (
+            <>
+              <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">No publications yet</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm max-w-xs mx-auto">
+                I'm currently drafting deep dives. Stay tuned for insights on research, sustainable scaling, and systems architectures.
+              </p>
+            </>
+          ) : (
+            <>
+              <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">No search matches</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm max-w-xs mx-auto mb-6">
+                No matching articles could be found for your keyword "{searchQuery}" in category "{activeCategory}".
+              </p>
+              <button 
+                onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
+                className="px-6 py-3 bg-gray-950 dark:bg-white text-white dark:text-gray-900 rounded-xl font-bold text-xs uppercase tracking-widest transition-all hover:bg-black dark:hover:bg-gray-100 active:scale-95 cursor-pointer"
+              >
+                Reset Search Filters
+              </button>
+            </>
+          )}
         </div>
       )}
 
@@ -161,6 +206,12 @@ export default function Blog() {
           </form>
         </div>
       </section>
+
+      <NewPostModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onPostCreated={handlePostCreated} 
+      />
     </main>
   );
 }
