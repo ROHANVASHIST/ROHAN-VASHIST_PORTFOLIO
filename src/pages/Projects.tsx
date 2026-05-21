@@ -102,9 +102,13 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-cyan-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
                 <div className="px-4 transition-all duration-500 ease-out group-hover:scale-[0.985] group-hover:opacity-95 origin-top">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech: string) => (
-                      <span key={tech} className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-600">
+                  <div className="flex flex-wrap gap-1.5 mb-4 max-w-full">
+                    {project.technologies.slice(0, 5).map((tech: string) => (
+                      <span 
+                        key={tech} 
+                        className="inline-flex items-center px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-cyan-50/80 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-100/80 dark:border-cyan-900/30 truncate max-w-[140px] transition-colors"
+                        title={tech}
+                      >
                         {tech}
                       </span>
                     ))}
