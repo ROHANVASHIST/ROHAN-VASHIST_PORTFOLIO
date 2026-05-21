@@ -41,8 +41,10 @@ async function startServer() {
     Key Projects:
     ${projectsData.projects.map((p: any) => `- ${p.title}: ${p.description}. Technologies: ${p.technologies.join(', ')}. Status: ${p.status}`).join('\n')}
     
-    Blog Status:
-    Rohan is currently drafting new articles and deep dives. The blog is currently in a "Coming Soon" state with no published posts yet.
+    Blog Articles:
+    - "The Thermodynamics of Direct Air Carbon Capture": Focuses on solid TSA/VTSA vs liquid solvent pathways, thermodynamic limits ($\approx 125 \text{ kWh/tonne}$ vs commercial $1500 \text{ kWh/tonne}$), and fluid modeling of multi-physics regenerators.
+    - "Rust and WebAssembly for Real-Time Thermomechanical Solvers": Discusses deploying heavy mathematical grids inside sandboxed layers at 60 FPS by avoiding Javascript overhead and sharing buffers directly.
+    - "Using Neural Networks for Transient Gas Turbine Calibration": Details physics-informed neural network structures integrating Navier-Stokes equations into traditional rotational estimators.
     
     Guidelines:
     1. Be professional, friendly, and concise.
