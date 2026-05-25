@@ -1,12 +1,19 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Code, Database, Globe, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import profileData from '../data/profile.json';
-import skillsData from '../data/skills.json';
-import projectsData from '../data/projects.json';
+import defaultProfileData from '../data/profile.json';
+import defaultSkillsData from '../data/skills.json';
+import defaultProjectsData from '../data/projects.json';
+import { useData, useDataWithLoading } from '../lib/useData';
+import ExpandableDescription from '../components/ExpandableDescription';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 
 export default function Home() {
+  const profileData = useData('profile', defaultProfileData);
+  const { data: projectsData, loading: projectsLoading } = useDataWithLoading('projects', defaultProjectsData);
+  
   const featuredProjects = projectsData.projects.slice(0, 3);
+
   
   return (
     <main className="overflow-hidden">
@@ -87,37 +94,62 @@ export default function Home() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="group relative bg-gray-50 dark:bg-gray-900 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-2xl transition-all"
-              >
-                <div className="aspect-[16/10] bg-gray-200 dark:bg-gray-800 overflow-hidden">
-                  <img 
-                    src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-8">
-                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">{project.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map(tech => (
-                      <span key={tech} className="px-3 py-1 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-lg text-xs font-bold text-gray-700 dark:text-gray-300">
-                        {tech}
-                      </span>
-                    ))}
+            {projectsLoading ? (
+              Array.from({ length: 3 }).map((_, idx) => (
+                <div 
+                  key={`skeleton-${idx}`}
+                  className="bg-gray-50 dark:bg-gray-901 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 animate-pulse flex flex-col h-full"
+                >
+                  <div className="aspect-[16/10] bg-gray-200/60 dark:bg-gray-800/50 flex items-center justify-center relative">
+                    <div className="w-12 h-12 rounded-xl bg-gray-300 dark:bg-gray-700/60 opacity-20 animate-pulse" />
+                  </div>
+                  <div className="p-8 flex-grow flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="h-7 bg-gray-200 dark:bg-gray-800/85 rounded-xl w-3/4" />
+                      <div className="space-y-2">
+                        <div className="h-4 bg-gray-200/80 dark:bg-gray-800/70 rounded-lg w-full" />
+                        <div className="h-4 bg-gray-200/80 dark:bg-gray-800/70 rounded-lg w-5/6" />
+                      </div>
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      <div className="h-6 w-16 bg-gray-200 dark:bg-gray-800/60 rounded-lg" />
+                      <div className="h-6 w-20 bg-gray-200 dark:bg-gray-800/60 rounded-lg" />
+                      <div className="h-6 w-14 bg-gray-200 dark:bg-gray-800/60 rounded-lg" />
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              ))
+            ) : (
+              featuredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2 }}
+                  className="group relative bg-gray-50 dark:bg-gray-900 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-2xl transition-all"
+                >
+                  <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-800 overflow-hidden relative">
+                    <img 
+                      src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
+                      alt={project.title}
+                      className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">{project.title}</h4>
+                    <ExpandableDescription content={project.description} />
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map(tech => (
+                        <span key={tech} className="px-3 py-1 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-lg text-xs font-bold text-gray-700 dark:text-gray-300">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -171,6 +203,13 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Hub Section */}
+      <section className="py-12 px-6">
+        <div className="max-w-6xl mx-auto">
+          <TestimonialsCarousel />
         </div>
       </section>
 

@@ -74,11 +74,97 @@ async function startServer() {
     }
   });
 
+  // Admin AI Copilot API Route
+  app.post("/api/admin/ai", async (req, res) => {
+    const { message, history } = req.body;
+
+    try {
+      // Dynamically load current state of all database collections
+      const projects = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/projects.json'), 'utf-8'));
+      const profile = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/profile.json'), 'utf-8'));
+      const skills = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/skills.json'), 'utf-8'));
+      const services = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/services.json'), 'utf-8'));
+      const resume = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/resume.json'), 'utf-8'));
+      
+      let subscribersCount = 0;
+      try {
+        const subs = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/subscribers.json'), 'utf-8'));
+        subscribersCount = subs.subscribers?.length || 0;
+      } catch {}
+
+      const adminSystemInstruction = `
+        You are Rohan Vashist's Admin Co-Pilot, an advanced technical copywriting and content optimization AI assistant.
+        Your conversations are strictly private, visible only to Rohan Vashist (the system administrator/developer).
+
+        You have real-time access to the live portfolio content:
+        
+        PROFILE DATA:
+        ${JSON.stringify(profile, null, 2)}
+        
+        PROJECTS DATA:
+        ${JSON.stringify(projects, null, 2)}
+        
+        SKILLS DATA:
+        ${JSON.stringify(skills, null, 2)}
+        
+        SERVICES DATA:
+        ${JSON.stringify(services, null, 2)}
+        
+        RESUME DATA:
+        ${JSON.stringify(resume, null, 2)}
+        
+        CURRENT SYSTEM STATS:
+        - Newsletter Subscribers: ${subscribersCount}
+        
+        Use Cases / Task Rules:
+        1. Form Completion support: Generate and suggest exact raw HTML or structured text to paste into fields like 'bio', 'description', 'problem', 'solution', or 'content' in the editor database.
+        2. Clean JSON outputs: When asked to draft a new portfolio item (project, resume point, skill, or service), ALWAYS output a clean, formatted JSON block that aligns perfectly with the current schema so Rohan can copy-paste it directly.
+        3. Newsletter campaigns: When asked to draft messages or announcements, write highly refined, professional updates based on Rohan's specific engineering fields (Direct Air Capture thermodynamic pathway modeling, real-time solvers, PI neural networks).
+        4. Optimization: Suggest impactful improvements for headlines, bullet points, and skills alignments.
+        5. Provide highly detailed and intelligent answers. Be a true companion in work optimization.
+      `;
+
+      const chat = ai.chats.create({
+        model: "gemini-3.5-flash",
+        config: {
+          systemInstruction: adminSystemInstruction,
+        },
+        history: history || [],
+      });
+
+      const result = await chat.sendMessage({ message });
+      res.json({ text: result.text });
+    } catch (error) {
+      console.error("Admin Gemini API error:", error);
+      res.status(500).json({ error: "Failed to generate AI copilot response" });
+    }
+  });
+
   // Contact API Route
   app.post("/api/contact", async (req, res) => {
     const { name, email, message, ...extraFields } = req.body;
 
     console.log("Contact form submission:", { name, email, message, extraFields });
+    
+    // Save to messages.json
+    try {
+      const messagesPath = path.join(process.cwd(), 'src/data/messages.json');
+      let messagesData = { messages: [] };
+      if (fs.existsSync(messagesPath)) {
+        messagesData = JSON.parse(fs.readFileSync(messagesPath, 'utf-8'));
+      }
+      messagesData.messages.push({
+        id: Date.now(),
+        date: new Date().toISOString(),
+        name,
+        email,
+        message,
+        ...extraFields
+      });
+      fs.writeFileSync(messagesPath, JSON.stringify(messagesData, null, 2), 'utf-8');
+    } catch (e) {
+      console.error("Failed to save message to json:", e);
+    }
 
     const EMAIL_USER = process.env.EMAIL_USER;
     const EMAIL_PASS = process.env.EMAIL_PASS;
@@ -116,6 +202,59 @@ async function startServer() {
 
     // Fallback/Simulate success if no credentials provided
     res.status(200).json({ message: "Form received! (Configure EMAIL_USER and EMAIL_PASS to send real emails)" });
+  });
+
+  // Newsletter API Route
+  app.post("/api/subscribe", async (req, res) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: "Email required" });
+    
+    try {
+      const subscribersPath = path.join(process.cwd(), 'src/data/subscribers.json');
+      let data = { subscribers: [] };
+      if (fs.existsSync(subscribersPath)) {
+        data = JSON.parse(fs.readFileSync(subscribersPath, 'utf-8'));
+      }
+      if (!data.subscribers.some((s: any) => s.email === email)) {
+        data.subscribers.push({ id: Date.now(), email, date: new Date().toISOString() });
+        fs.writeFileSync(subscribersPath, JSON.stringify(data, null, 2), 'utf-8');
+      }
+      res.json({ message: "Subscribed successfully!" });
+    } catch (e) {
+      res.status(500).json({ error: "Failed to subscribe" });
+    }
+  });
+
+  // Data API Routes
+  app.get("/api/data/:type", (req, res) => {
+    const { type } = req.params;
+    const filePath = path.join(process.cwd(), `src/data/${type}.json`);
+    
+    if (fs.existsSync(filePath)) {
+      try {
+        const data = fs.readFileSync(filePath, 'utf-8');
+        res.json(JSON.parse(data));
+      } catch (e) {
+        res.status(500).json({ error: "Failed to parse data" });
+      }
+    } else {
+      res.status(404).json({ error: "File not found" });
+    }
+  });
+
+  app.post("/api/data/:type", (req, res) => {
+    const { type } = req.params;
+    const filePath = path.join(process.cwd(), `src/data/${type}.json`);
+    
+    // In a real deployed app, auth check (e.g. verifying a Supabase token)
+    // would be performed here. We'll proceed with the write directly.
+    try {
+      fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2), 'utf-8');
+      res.json({ success: true });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ error: "Failed to save data" });
+    }
   });
 
   // Vite middleware for development

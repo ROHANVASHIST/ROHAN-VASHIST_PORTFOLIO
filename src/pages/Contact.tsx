@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import InteractiveBookingEstimator from '../components/InteractiveBookingEstimator';
 
 // Configuration for extra fields - easy to add more!
 const EXTRA_FIELDS = [
@@ -186,6 +187,11 @@ export default function Contact() {
             </AnimatePresence>
           </form>
         </div>
+      </div>
+
+      {/* Interactive Estimator & Booking Scheduler */}
+      <div className="mt-24 pt-16 border-t border-gray-100 dark:border-white/5 max-w-6xl mx-auto">
+        <InteractiveBookingEstimator />
       </div>
     </main>
   );

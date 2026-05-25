@@ -1,51 +1,55 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User } from 'firebase/auth';
-import firebaseConfig from '../../firebase-applet-config.json';
+import { supabase } from './supabase';
+import { User, Session } from '@supabase/supabase-js';
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-const provider = new GoogleAuthProvider();
-// Request Forms scope
-provider.addScope('https://www.googleapis.com/auth/forms');
-
-// Flag to indicate if we are in the middle of a sign-in flow.
-let isSigningIn = false;
 // Cache the access token in memory.
-let cachedAccessToken: string | null = null;
+let cachedSession: Session | null = null;
+let isSigningIn = false;
 
 // Initialize auth state listener. Call this on app load.
 export const initAuth = (
   onAuthSuccess?: (user: User, token: string) => void,
   onAuthFailure?: () => void
 ) => {
-  return onAuthStateChanged(auth, async (user: User | null) => {
-    if (user) {
-      if (cachedAccessToken) {
-        if (onAuthSuccess) onAuthSuccess(user, cachedAccessToken);
-      } else if (!isSigningIn) {
-        cachedAccessToken = null;
-        if (onAuthFailure) onAuthFailure();
-      }
+  // Check current session first
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session?.user) {
+      cachedSession = session;
+      if (onAuthSuccess) onAuthSuccess(session.user, session.access_token);
     } else {
-      cachedAccessToken = null;
       if (onAuthFailure) onAuthFailure();
     }
   });
+
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    if (session?.user) {
+      cachedSession = session;
+      if (onAuthSuccess && event === 'SIGNED_IN') {
+        onAuthSuccess(session.user, session.access_token);
+      }
+    } else {
+      cachedSession = null;
+      if (onAuthFailure && event === 'SIGNED_OUT') {
+        onAuthFailure();
+      }
+    }
+  });
+
+  return () => {
+    subscription.unsubscribe();
+  };
 };
 
-// Must be called from a button click or user interaction
-export const googleSignIn = async (): Promise<{ user: User; accessToken: string } | null> => {
+export const signInWithProvider = async (): Promise<void> => {
   try {
     isSigningIn = true;
-    const result = await signInWithPopup(auth, provider);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    if (!credential?.accessToken) {
-      throw new Error('Failed to get access token from Firebase Auth');
-    }
-
-    cachedAccessToken = credential.accessToken;
-    return { user: result.user, accessToken: cachedAccessToken };
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/admin/dashboard`
+      }
+    });
+    
+    if (error) throw error;
   } catch (error: any) {
     console.error('Sign in error:', error);
     throw error;
@@ -55,10 +59,14 @@ export const googleSignIn = async (): Promise<{ user: User; accessToken: string 
 };
 
 export const getAccessToken = async (): Promise<string | null> => {
-  return cachedAccessToken;
+  if (!cachedSession) {
+    const { data: { session } } = await supabase.auth.getSession();
+    cachedSession = session;
+  }
+  return cachedSession?.access_token || null;
 };
 
 export const logout = async () => {
-  await auth.signOut();
-  cachedAccessToken = null;
+  await supabase.auth.signOut();
+  cachedSession = null;
 };

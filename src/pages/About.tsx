@@ -1,9 +1,12 @@
 import { motion } from 'motion/react';
-import profileData from '../data/profile.json';
+import defaultProfileData from '../data/profile.json';
 import { ArrowRight, Download, GraduationCap, Briefcase } from 'lucide-react';
 import heroImage from '../assets/images/about_hero_banner_1779235498423.png';
+import { useData } from '../lib/useData';
 
 export default function About() {
+  const profileData = useData('profile', defaultProfileData);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,9 +61,10 @@ export default function About() {
 
           <div className="lg:col-span-7">
             <motion.section variants={itemVariants} className="mb-20">
-              <p className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 leading-snug font-medium mb-12">
-                {profileData.bio}
-              </p>
+              <div 
+                className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-snug font-medium mb-12 prose dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: profileData.bio }}
+              />
               
               <div className="grid sm:grid-cols-2 gap-8 py-12 border-t border-gray-100 dark:border-gray-800">
                 <div>

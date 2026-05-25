@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import servicesData from '../data/services.json';
+import ClimateFeasibilityLab from '../components/ClimateFeasibilityLab';
 
 export default function Services() {
   return (
@@ -65,6 +66,18 @@ export default function Services() {
           </motion.div>
         ))}
       </div>
+
+      {/* Embedded Feasibility & ROI Sandbox Lab */}
+      <section className="mt-32">
+        <div className="max-w-3xl mb-12">
+          <h2 className="text-xs font-black text-cyan-600 dark:text-cyan-400 uppercase tracking-[0.3em] mb-4">Interactive Client Tools</h2>
+          <h3 className="text-4xl font-black text-gray-900 dark:text-white leading-tight">Project Scoping & Feasibility ROI Solver</h3>
+          <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed font-semibold">
+            Evaluate high-level design parameters dynamically. Try out the CleanTech scoping simulator below to preview net annual savings, payback timelines, and localized environmental impact indexes before planning a build.
+          </p>
+        </div>
+        <ClimateFeasibilityLab />
+      </section>
 
       <div className="mt-32 border-2 border-dashed border-gray-100 dark:border-gray-800 rounded-[3rem] p-12 md:p-20 text-center">
         <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-6">Need a custom technical implementation?</h2>

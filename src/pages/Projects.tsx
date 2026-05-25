@@ -2,9 +2,12 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Filter, Search } from 'lucide-react';
-import projectsData from '../data/projects.json';
+import defaultProjectsData from '../data/projects.json';
+import { useData, useDataWithLoading } from '../lib/useData';
+import ExpandableDescription from '../components/ExpandableDescription';
 
 export default function Projects() {
+  const { data: projectsData, loading: projectsLoading } = useDataWithLoading('projects', defaultProjectsData);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -81,51 +84,76 @@ export default function Projects() {
         className="grid md:grid-cols-2 lg:grid-cols-2 gap-12"
       >
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project: any, idx: number) => (
-            <motion.div
-              layout
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="group"
-            >
-              <Link to={`/projects/${project.id}`}>
-                <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-900 rounded-[3rem] overflow-hidden mb-8 shadow-sm transition-all duration-500 ease-out group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.18)] dark:group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.25)] group-hover:-translate-y-2.5 relative">
-                  <motion.img 
-                    src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
-                  />
-                  {/* Subtle color overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-cyan-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          {projectsLoading ? (
+            Array.from({ length: 4 }).map((_, idx) => (
+              <div 
+                key={`skeleton-${idx}`}
+                className="bg-gray-50 dark:bg-gray-901 rounded-[3rem] overflow-hidden animate-pulse flex flex-col h-full border border-gray-100 dark:border-gray-800"
+              >
+                <div className="aspect-[16/10] bg-gray-200/60 dark:bg-gray-800/40 flex items-center justify-center relative rounded-[3rem]">
+                  <div className="w-16 h-16 rounded-2xl bg-gray-300 dark:bg-gray-700/60 opacity-20 animate-pulse" />
                 </div>
-                <div className="px-4 transition-all duration-500 ease-out group-hover:scale-[0.985] group-hover:opacity-95 origin-top">
-                  <div className="flex flex-wrap gap-1.5 mb-4 max-w-full">
-                    {project.technologies.slice(0, 5).map((tech: string) => (
-                      <span 
-                        key={tech} 
-                        className="inline-flex items-center px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-cyan-50/80 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-100/80 dark:border-cyan-900/30 truncate max-w-[140px] transition-colors"
-                        title={tech}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                <div className="p-8 flex-grow flex flex-col justify-between space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex gap-2">
+                      <div className="h-5 w-14 bg-cyan-100/10 dark:bg-cyan-950/20 rounded-full" />
+                      <div className="h-5 w-16 bg-cyan-100/10 dark:bg-cyan-950/20 rounded-full" />
+                    </div>
+                    <div className="h-8 bg-gray-200 dark:bg-gray-800/85 rounded-xl w-3/4" />
+                    <div className="space-y-2">
+                      <div className="h-4 bg-gray-200/80 dark:bg-gray-800/70 rounded-lg w-full" />
+                      <div className="h-4 bg-gray-200/80 dark:bg-gray-800/70 rounded-lg w-4/5" />
+                    </div>
                   </div>
-                  <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 line-clamp-2 text-lg leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white group-hover:gap-4 transition-all">
-                    View Case Study <ArrowRight size={16} className="text-cyan-600" />
-                  </div>
+                  <div className="h-4 w-32 bg-gray-200/60 dark:bg-gray-800/40 rounded mt-2" />
                 </div>
-              </Link>
-            </motion.div>
-          ))}
+              </div>
+            ))
+          ) : (
+            filteredProjects.map((project: any, idx: number) => (
+              <motion.div
+                layout
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="group"
+              >
+                <Link to={`/projects/${project.id}`}>
+                  <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-900 rounded-[3rem] overflow-hidden mb-8 shadow-sm transition-all duration-500 ease-out group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.18)] dark:group-hover:shadow-[0_25px_50px_-12px_rgba(6,182,212,0.25)] group-hover:-translate-y-2.5 relative">
+                    <motion.img 
+                      src={project.image || 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'} 
+                      alt={project.title}
+                      className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
+                    {/* Subtle color overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-cyan-950/20 via-cyan-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  </div>
+                  <div className="px-4 transition-all duration-500 ease-out group-hover:scale-[0.985] group-hover:opacity-95 origin-top">
+                    <div className="flex flex-wrap gap-1.5 mb-4 max-w-full">
+                      {project.technologies.slice(0, 5).map((tech: string) => (
+                        <span 
+                          key={tech} 
+                          className="inline-flex items-center px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest bg-cyan-50/80 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-100/80 dark:border-cyan-900/30 truncate max-w-[140px] transition-colors"
+                          title={tech}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <ExpandableDescription content={project.description} className="text-lg" />
+                    <div className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-gray-900 dark:text-white group-hover:gap-4 transition-all">
+                      View Case Study <ArrowRight size={16} className="text-cyan-600" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))
+          )}
         </AnimatePresence>
       </motion.div>
 

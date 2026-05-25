@@ -13,6 +13,30 @@ export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [email, setEmail] = useState("");
+  const [subStatus, setSubStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const subscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubStatus('loading');
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        setSubStatus('success');
+        setEmail('');
+      } else {
+        setSubStatus('error');
+      }
+    } catch {
+      setSubStatus('error');
+    }
+  };
+
   useEffect(() => {
     setPosts(getBlogPosts());
   }, []);
@@ -104,11 +128,11 @@ export default function Blog() {
             whileHover={{ y: -8 }}
             className="flex flex-col bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 overflow-hidden group shadow-sm hover:shadow-2xl transition-all"
           >
-            <Link to={`/blog/${post.id}`} className="block aspect-[16/9] overflow-hidden">
+            <Link to={`/blog/${post.id}`} className="block aspect-[16/9] overflow-hidden bg-gray-100 dark:bg-gray-800">
               <img 
                 src={post.image} 
                 alt={post.title} 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.05]"
               />
             </Link>
             
@@ -193,17 +217,25 @@ export default function Blog() {
             Get occasional emails about engineering, sustainability, and system design. 
             No spam, just signal.
           </p>
-          <form className="flex flex-col sm:flex-row gap-4">
+          <form onSubmit={subscribe} className="flex flex-col sm:flex-row gap-4">
             <input 
               type="email" 
               placeholder="Enter your email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={subStatus === 'loading' || subStatus === 'success'}
               className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/10 text-white focus:ring-2 focus:ring-cyan-500 outline-none backdrop-blur-sm"
               required
             />
-            <button className="px-8 py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl transition-all shadow-xl shadow-cyan-600/20 active:scale-95">
-              Subscribe
+            <button 
+              type="submit"
+              disabled={subStatus === 'loading' || subStatus === 'success'}
+              className="px-8 py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl transition-all shadow-xl shadow-cyan-600/20 active:scale-95 disabled:opacity-50"
+            >
+              {subStatus === 'success' ? 'Subscribed!' : 'Subscribe'}
             </button>
           </form>
+          {subStatus === 'error' && <p className="text-red-400 mt-4 font-bold text-sm">Failed to subscribe.</p>}
         </div>
       </section>
 

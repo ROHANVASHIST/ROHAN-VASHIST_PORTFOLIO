@@ -80,12 +80,12 @@ export default function BlogDetails() {
 
         {/* Featured Image */}
         {post.image && (
-          <div className="w-full aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl mb-12">
+          <div className="w-full aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl mb-12 bg-gray-100 dark:bg-gray-900">
             <img 
               src={post.image} 
               alt={post.title} 
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         )}

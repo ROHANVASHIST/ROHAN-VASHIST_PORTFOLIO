@@ -1,15 +1,39 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const subscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus('loading');
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
   
   return (
     <footer className="bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800 transition-colors pt-24 pb-12 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <Link to="/" className="flex items-center gap-3 mb-8 group">
               <div className="w-12 h-12 bg-gray-900 dark:bg-white rounded-2xl flex items-center justify-center text-white dark:text-gray-900 font-black text-2xl group-hover:scale-110 transition-transform">
                 RV
@@ -45,6 +69,8 @@ export default function Footer() {
                 { name: 'Home', path: '/' },
                 { name: 'About', path: '/about' },
                 { name: 'Projects', path: '/projects' },
+                { name: 'Research', path: '/research' },
+                { name: 'Community', path: '/community' },
                 { name: 'Services', path: '/services' },
                 { name: 'Blog', path: '/blog' },
               ].map(link => (
@@ -77,10 +103,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-[0.2em] mb-8">Location</h4>
-            <p className="text-gray-900 dark:text-gray-300 font-bold">New York, NY</p>
-            <p className="text-gray-500 dark:text-gray-500 text-sm mt-2">Remote Friendly</p>
+          <div className="lg:col-span-3">
+            <h4 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-[0.2em] mb-8">Newsletter</h4>
+            <p className="text-sm font-bold text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+              Join the periodic newsletter for latest insights on engineering and code.
+            </p>
+            <form onSubmit={subscribe} className="relative group">
+              <input 
+                type="email" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@domain.com"
+                className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 pr-12 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-cyan-500 transition-colors"
+                disabled={status === 'loading' || status === 'success'}
+              />
+              <button 
+                type="submit"
+                disabled={status === 'loading' || status === 'success'}
+                className="absolute right-2 top-2 bottom-2 aspect-square bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg flex items-center justify-center transition-colors disabled:opacity-50"
+              >
+                {status === 'success' ? <CheckCircle2 size={16} /> : <Send size={14} />}
+              </button>
+            </form>
+            {status === 'success' && <p className="text-xs font-bold text-emerald-500 mt-3">Subscribed successfully!</p>}
+            {status === 'error' && <p className="text-xs font-bold text-red-500 mt-3">Failed to subscribe.</p>}
           </div>
         </div>
         

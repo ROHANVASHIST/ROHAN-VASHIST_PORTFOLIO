@@ -1,6 +1,8 @@
 import { motion } from 'motion/react';
 import { Cpu, Code, Database, Zap, Shield, BarChart } from 'lucide-react';
 import skillsData from '../data/skills.json';
+import InteractiveEnergyLab from '../components/InteractiveEnergyLab';
+import SkillsVisualizer from '../components/SkillsVisualizer';
 
 const ICON_MAP: Record<string, any> = {
   "Mechanical Engineering": Cpu,
@@ -76,6 +78,27 @@ export default function Expertise() {
           );
         })}
       </div>
+
+      {/* Skills Matrix Visual Analyser */}
+      <SkillsVisualizer />
+
+      {/* Dynamic Multi-Physics Simulator Lab */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-32 space-y-12"
+      >
+        <div className="max-w-3xl">
+          <h2 className="text-sm font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-[0.3em] mb-4">Thermodynamic Lab Sandbox</h2>
+          <h3 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white leading-none">Interactive Energy Simulator</h3>
+          <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+            In energy science, theory maps directly to computational feedback. Adjust thermodynamic variables in real-time to observe chemical gas state compressibilities, carbon capture adsorption kinetics, and marine solar desalination loops.
+          </p>
+        </div>
+        
+        <InteractiveEnergyLab />
+      </motion.section>
 
       <section className="mt-32 p-16 bg-gray-900 rounded-[3rem] text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
