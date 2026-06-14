@@ -21,6 +21,12 @@ export const supabase = isSupabaseConfigured
           throw new Error("Supabase is not configured yet. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.");
         },
         signOut: async () => {},
-      }
+      },
+      storage: {
+        from: () => ({
+          upload: async () => ({ data: null, error: new Error("Supabase is not configured") }),
+          getPublicUrl: () => ({ data: { publicUrl: "" } }),
+        }),
+      },
     } as any;
 

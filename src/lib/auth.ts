@@ -58,6 +58,22 @@ export const signInWithProvider = async (): Promise<void> => {
   }
 };
 
+export const signInWithEmail = async (email: string, password: string): Promise<void> => {
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error;
+};
+
+export const signUp = async (email: string, password: string): Promise<void> => {
+  const { error } = await supabase.auth.signUp({ 
+    email, 
+    password,
+    options: {
+      emailRedirectTo: `${window.location.origin}/admin/dashboard`
+    }
+  });
+  if (error) throw error;
+};
+
 export const getAccessToken = async (): Promise<string | null> => {
   if (!cachedSession) {
     const { data: { session } } = await supabase.auth.getSession();

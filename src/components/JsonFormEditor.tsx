@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Eye, Code } from "lucide-react";
-// @ts-ignore
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { Eye, Code, Loader2 } from "lucide-react";
+import { uploadImage } from "../lib/storage";
+import { isSupabaseConfigured } from "../lib/supabase";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 interface JsonFormEditorProps {
   data: any;
@@ -31,6 +32,8 @@ export default function JsonFormEditor({
   const [viewMode, setViewMode] = useState<"form" | "raw">("form");
   const [rawText, setRawText] = useState(() => JSON.stringify(data, null, 2));
   const [error, setError] = useState("");
+  const [uploadingPath, setUploadingPath] = useState<string | null>(null);
+  const [uploadError, setUploadError] = useState("");
 
   const handleRawChange = (text: string) => {
     setRawText(text);
@@ -109,23 +112,47 @@ export default function JsonFormEditor({
                 />
               )}
               {isImg && (
-                <label className="cursor-pointer flex items-center justify-center bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400 py-2 rounded-lg text-xs font-bold hover:bg-cyan-100 dark:hover:bg-cyan-900/50 transition-colors w-fit px-4 border border-cyan-200 dark:border-cyan-800">
+                <label className={`cursor-pointer flex items-center justify-center gap-2 bg-cyan-50 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400 py-2 rounded-lg text-xs font-bold hover:bg-cyan-100 dark:hover:bg-cyan-900/50 transition-colors w-fit px-4 border border-cyan-200 dark:border-cyan-800 ${uploadingPath === path.join(".") ? "opacity-60 pointer-events-none" : ""}`}>
                   <input
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    onChange={(e) => {
+                    disabled={uploadingPath === path.join(".")}
+                    onChange={async (e) => {
                       const file = e.target.files?.[0];
-                      if (file) {
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                          handleFieldChange(path, reader.result);
-                        };
-                        reader.readAsDataURL(file);
+                      if (!file) return;
+
+                      const pathKey = path.join(".");
+                      setUploadError("");
+
+                      if (isSupabaseConfigured) {
+                        setUploadingPath(pathKey);
+                        try {
+                          const publicUrl = await uploadImage(file);
+                          handleFieldChange(path, publicUrl);
+                        } catch (err: any) {
+                          setUploadError(err?.message || "Image upload failed");
+                        } finally {
+                          setUploadingPath(null);
+                          e.target.value = "";
+                        }
+                        return;
                       }
+
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        handleFieldChange(path, reader.result);
+                      };
+                      reader.readAsDataURL(file);
                     }}
                   />
-                  Upload New Image
+                  {uploadingPath === path.join(".") ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" /> Uploading...
+                    </>
+                  ) : (
+                    "Upload New Image"
+                  )}
                 </label>
               )}
             </div>
@@ -221,6 +248,7 @@ export default function JsonFormEditor({
       {viewMode === "raw" ? (
         <div>
           {error && <div className="mb-2 text-xs text-red-500">{error}</div>}
+          {uploadError && <div className="mb-2 text-xs text-red-500">{uploadError}</div>}
           <textarea
             value={rawText}
             onChange={(e) => handleRawChange(e.target.value)}
@@ -230,6 +258,7 @@ export default function JsonFormEditor({
         </div>
       ) : (
         <div className="space-y-6 max-h-[800px] overflow-y-auto pr-4 custom-scrollbar">
+          {uploadError && <div className="text-xs text-red-500">{uploadError}</div>}
           {Object.keys(data).map((k) => renderField(data[k], [k], k))}
         </div>
       )}

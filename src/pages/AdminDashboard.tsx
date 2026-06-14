@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../lib/auth';
+import { logout, getAccessToken } from '../lib/auth';
 import { LayoutDashboard, LogOut, Save, FileJson, AlertCircle, Sparkles } from 'lucide-react';
 import JsonFormEditor from '../components/JsonFormEditor';
 import AdminAiCopilot from '../components/AdminAiCopilot';
@@ -27,12 +27,21 @@ function DataEditor({ type }: { type: string }) {
     setSuccess('');
     setSaving(true);
     try {
+      const token = await getAccessToken();
+      if (!token) throw new Error('Not authenticated. Please sign in again.');
+
       const res = await fetch(`/api/data/${type}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(data)
       });
-      if (!res.ok) throw new Error('Failed to save');
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || 'Failed to save');
+      }
       setSuccess('Saved successfully!');
       setTimeout(() => setSuccess(''), 3000);
     } catch (e: any) {

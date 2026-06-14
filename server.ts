@@ -1,8 +1,15 @@
+import "dotenv/config";
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
+import {
+  fetchDataFromStorage,
+  isSupabaseStorageConfigured,
+  saveDataToStorage,
+  verifyAdminToken,
+} from "./src/lib/dataStore";
 
 async function startServer() {
   const app = express();
@@ -225,31 +232,56 @@ async function startServer() {
     }
   });
 
-  // Data API Routes
-  app.get("/api/data/:type", (req, res) => {
-    const { type } = req.params;
+  const readLocalData = (type: string) => {
     const filePath = path.join(process.cwd(), `src/data/${type}.json`);
-    
-    if (fs.existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) return null;
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  };
+
+  const writeLocalData = (type: string, payload: unknown) => {
+    const filePath = path.join(process.cwd(), `src/data/${type}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf-8");
+  };
+
+  // Data API Routes — Supabase Storage when configured, local JSON fallback
+  app.get("/api/data/:type", async (req, res) => {
+    const { type } = req.params;
+
+    if (isSupabaseStorageConfigured) {
       try {
-        const data = fs.readFileSync(filePath, 'utf-8');
-        res.json(JSON.parse(data));
-      } catch (e) {
-        res.status(500).json({ error: "Failed to parse data" });
+        const data = await fetchDataFromStorage(type);
+        return res.json(data);
+      } catch (storageError) {
+        console.warn(`Supabase read failed for ${type}, falling back to local file:`, storageError);
       }
-    } else {
-      res.status(404).json({ error: "File not found" });
+    }
+
+    try {
+      const data = readLocalData(type);
+      if (data) return res.json(data);
+      return res.status(404).json({ error: "File not found" });
+    } catch (e) {
+      return res.status(500).json({ error: "Failed to parse data" });
     }
   });
 
-  app.post("/api/data/:type", (req, res) => {
+  app.post("/api/data/:type", async (req, res) => {
     const { type } = req.params;
-    const filePath = path.join(process.cwd(), `src/data/${type}.json`);
-    
-    // In a real deployed app, auth check (e.g. verifying a Supabase token)
-    // would be performed here. We'll proceed with the write directly.
+    const authHeader = req.headers.authorization;
+
+    const isAdmin = await verifyAdminToken(authHeader);
+    if (!isAdmin) {
+      return res.status(401).json({ error: "Unauthorized. Sign in as an admin to save changes." });
+    }
+
+    const token = authHeader!.slice(7);
+
     try {
-      fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2), 'utf-8');
+      if (isSupabaseStorageConfigured) {
+        await saveDataToStorage(type, req.body, token);
+      } else {
+        writeLocalData(type, req.body);
+      }
       res.json({ success: true });
     } catch (e) {
       console.error(e);

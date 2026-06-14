@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { Session } from '@supabase/supabase-js';
-
-// List of authorized admin emails. 
-// New admins can be added here after confirmation from rohanvashist01@gmail.com
-const ADMIN_EMAILS = ['rohanvashist01@gmail.com']; 
+import { ADMIN_EMAILS } from '../lib/adminConfig';
+import { Session } from '@supabase/supabase-js'; 
 
 export default function AdminRoute({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
