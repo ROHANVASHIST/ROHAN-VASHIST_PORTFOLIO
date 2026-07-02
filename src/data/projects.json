@@ -3,8 +3,8 @@
     {
       "id": 1,
       "title": "SEO Generator",
-      "description": "An AI-powered SEO generator that assists users in optimizing blog content for search engines to boost visibility and organic growth. Built as part of my Prompt Engineer Internship at Future Intern.",
-      "technologies": ["React", "Node.js", "AI/ML", "OpenAI API", "Tailwind CSS"],
+      "description": "An enterprise-grade SEO content cluster generator that researches keywords, builds semantic hub-and-spoke graphs, drafts long-form copy, and injects contextual anchors. Features a contrast-adaptive UI with Minimalist Daylight / Cyberpunk Slate themes, Google SERP preview simulations, and one-click export. Built as part of my Prompt Engineer Internship at Future Intern.",
+      "technologies": ["React", "TypeScript", "Node.js", "Google Gemini AI", "Tailwind CSS", "Express"],
       "image": "/images/projects/seo.png",
       "images": [
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
@@ -23,8 +23,8 @@
     {
       "id": 2,
       "title": "Website Generator",
-      "description": "A platform helping local businesses easily create and launch their own websites with minimal effort, no coding required. Built during my Prompt Engineer Internship at Future Intern.",
-      "technologies": ["React", "TypeScript", "AI Generation", "Tailwind CSS"],
+      "description": "A premier AI-powered platform for generating production-ready React/TypeScript codebases with Tailwind CSS from raw data. Features a Neural Engine Synthesis powered by Google Gemini 1.5 Pro, Aesthetic Matrix UI, and a Blueprint Protocol that takes designs from concept to deployment. Built during my Prompt Engineer Internship at Future Intern.",
+      "technologies": ["React", "TypeScript", "Google Gemini AI", "Tailwind CSS", "Express", "Motion"],
       "image": "/images/projects/website-generator.png",
       "images": [
         "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
@@ -43,8 +43,8 @@
     {
       "id": 3,
       "title": "UGC Ad Generator",
-      "description": "An innovative platform enabling brands to harness the power of user-generated content for authentic and engaging advertising campaigns. Built during my Prompt Engineer Internship at Future Intern.",
-      "technologies": ["React", "Node.js", "AI/ML", "MongoDB"],
+      "description": "A high-converting UGC ad pack generator for D2C brands and content creators. Features an intelligent Gemini copywriter engine with 5 psychology-triggered hook styles (Vulnerable Confessions, Contrarian Claims, Specific Results, Direct Address, Curiosity Gaps), P.A.S.C. video script framework, and omnichannel adaptation for Instagram Reels, Meta Feed Ads, and YouTube Shorts. Export to PDF, ZIP, or clipboard. Built during my Prompt Engineer Internship at Future Intern.",
+      "technologies": ["React", "TypeScript", "Google Gemini AI", "Node.js", "Tailwind CSS", "Express", "jspdf"],
       "image": "/images/projects/ugc-ad.png",
       "images": [
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
@@ -238,6 +238,46 @@
       "problem": "Biomedical researchers needed accessible tools to analyze protein expression data and identify prognostic markers.",
       "solution": "Developed a platform that simplifies protein data analysis and visualization for prognostic research.",
       "learnings": "Deepened understanding of bioinformatics, protein data analysis, and scientific data visualization techniques.",
+      "status": "Completed"
+    },
+    {
+      "id": 13,
+      "title": "PodSoft Studio",
+      "description": "A professional-grade web-based video production and streaming studio inspired by OBS Studio. Features multi-scene management with drag-and-drop sources (Camera, Display Capture, DroidCam via MJPEG), Studio Mode with Preview/Program switching, audio mixer, real-time filters and effects (brightness, contrast), and local recording to .webm via the MediaRecorder API. Includes AI scene analysis powered by Google Gemini.",
+      "technologies": ["React", "TypeScript", "Google Gemini AI", "Tailwind CSS", "Express", "Motion", "MediaRecorder API", "WebRTC"],
+      "image": "/images/projects/podsoft-studio.png",
+      "images": [
+        "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "github": "https://github.com/ROHANVASHIST/PODSOFT_V1",
+      "demo": "",
+      "featured": true,
+      "keyFeatures": ["Multi-scene management", "Studio Mode (Preview/Program)", "Camera & display capture", "Audio mixer & filters", "AI scene analysis", "Local .webm recording"],
+      "problem": "Content creators needed a professional, browser-based streaming studio without heavy desktop software.",
+      "solution": "Built a full-featured web-based production studio with OBS-level capabilities including multi-source management, transitions, and AI-powered scene analysis.",
+      "learnings": "Deep expertise in MediaRecorder API, WebRTC, real-time video processing, and building complex browser-based media applications.",
+      "status": "Completed"
+    },
+    {
+      "id": 14,
+      "title": "Nobel Hub Nexus",
+      "description": "An enhanced iteration of the Nobel Hub platform with expanded database integration. Features comprehensive Nobel laureate analytics, research paper integration, and an interactive dashboard with PostgreSQL-backed data storage for richer content management.",
+      "technologies": ["TypeScript", "React", "PostgreSQL", "Vite", "shadcn/ui", "Tailwind CSS"],
+      "image": "/images/projects/nobel-nexus.png",
+      "images": [
+        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "github": "https://github.com/ROHANVASHIST/noble-hub-nexus",
+      "demo": "",
+      "featured": false,
+      "keyFeatures": ["Nobel laureate database", "PostgreSQL-backed storage", "Advanced analytics dashboard", "Research paper integration", "Interactive data visualization"],
+      "problem": "The original Nobel Hub needed a more robust backend to handle richer data and analytics.",
+      "solution": "Developed a database-backed enhanced version with PostgreSQL for scalable content management and deeper analytics.",
+      "learnings": "Gained proficiency in full-stack architecture with PostgreSQL integration, database schema design, and data visualization at scale.",
       "status": "Completed"
     }
   ]
