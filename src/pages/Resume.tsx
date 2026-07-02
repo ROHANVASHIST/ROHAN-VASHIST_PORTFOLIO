@@ -146,7 +146,7 @@ export default function Resume() {
             <h3 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest mb-8">Quick Links</h3>
             <div className="space-y-4">
               {[
-                { name: 'LinkedIn Profile', href: 'https://linkedin.com/in/rohanvashist01' },
+                { name: 'LinkedIn Profile', href: 'https://www.linkedin.com/in/rohanvashist01' },
                 { name: 'GitHub Repos', href: 'https://github.com/ROHANVASHIST' },
                 { name: 'Portfolio Site', href: '/' },
               ].map(link => (

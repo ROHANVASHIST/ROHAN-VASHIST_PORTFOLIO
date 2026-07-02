@@ -72,7 +72,7 @@ export default function Footer() {
           <div className="flex gap-3">
               {[
                 { icon: Github, href: "https://github.com/ROHANVASHIST" },
-                { icon: Linkedin, href: "https://linkedin.com/in/rohanvashist01" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/rohanvashist01" },
                 { icon: Mail, href: "mailto:rohanvashist01@gmail.com" },
               ].map((item, idx) => (
                 <motion.a
