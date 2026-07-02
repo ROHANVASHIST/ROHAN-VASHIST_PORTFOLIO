@@ -69,11 +69,10 @@ export default function Footer() {
             <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-10 max-w-md">
               Bridging the gap between complex engineering systems and intuitive digital experiences.
             </p>
-            <div className="flex gap-3">
+          <div className="flex gap-3">
               {[
-                { icon: Github, href: "https://github.com/rohan" },
-                { icon: Linkedin, href: "https://linkedin.com/in/rohan" },
-                { icon: Twitter, href: "https://twitter.com/rohan" },
+                { icon: Github, href: "https://github.com/ROHANVASHIST" },
+                { icon: Linkedin, href: "https://linkedin.com/in/rohanvashist01" },
                 { icon: Mail, href: "mailto:rohanvashist01@gmail.com" },
               ].map((item, idx) => (
                 <motion.a

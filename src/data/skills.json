@@ -1,19 +1,50 @@
 {
   "categories": [
     {
-      "name": "Energy Engineering",
+      "name": "AI & Software Development",
       "skills": [
-        { "name": "Hydrogen Economy", "level": "Advanced" },
-        { "name": "Biomass Technology", "level": "Advanced" },
-        { "name": "Electrochemical Analysis", "level": "Intermediate" }
+        { "name": "Full Stack Web Development", "level": "Advanced" },
+        { "name": "AI Orchestration", "level": "Advanced" },
+        { "name": "Prompt Engineering", "level": "Advanced" },
+        { "name": "Git Management", "level": "Advanced" },
+        { "name": "Text Editor/Block-Based Architecture", "level": "Intermediate" },
+        { "name": "React", "level": "Advanced" },
+        { "name": "TypeScript", "level": "Advanced" },
+        { "name": "Node.js", "level": "Advanced" },
+        { "name": "Python", "level": "Intermediate" },
+        { "name": "Tailwind CSS", "level": "Advanced" }
       ]
     },
     {
-      "name": "Programming",
+      "name": "Renewable Energy & Hydrogen",
       "skills": [
-        { "name": "JavaScript/TypeScript", "level": "Advanced" },
-        { "name": "React", "level": "Advanced" },
-        { "name": "Python", "level": "Intermediate" }
+        { "name": "Hydrogen Systems", "level": "Advanced" },
+        { "name": "Green Hydrogen Policy", "level": "Intermediate" },
+        { "name": "Biomass Gasification", "level": "Intermediate" },
+        { "name": "Biomass Analysis", "level": "Intermediate" },
+        { "name": "White Hydrogen Potential", "level": "Intermediate" }
+      ]
+    },
+    {
+      "name": "Analytical & Electrochemical",
+      "skills": [
+        { "name": "Cyclic Voltammetry", "level": "Intermediate" },
+        { "name": "Conductometric Titrations", "level": "Intermediate" },
+        { "name": "Potentiometric Titrations", "level": "Intermediate" },
+        { "name": "Butler-Volmer Applications", "level": "Intermediate" },
+        { "name": "FTIR", "level": "Intermediate" },
+        { "name": "XRD", "level": "Intermediate" },
+        { "name": "Temperature Sensors", "level": "Intermediate" }
+      ]
+    },
+    {
+      "name": "Soft Skills & Leadership",
+      "skills": [
+        { "name": "Technical Writing", "level": "Advanced" },
+        { "name": "Project Management", "level": "Advanced" },
+        { "name": "Digital Marketing", "level": "Intermediate" },
+        { "name": "Community Leadership", "level": "Advanced" },
+        { "name": "Task Design & Execution", "level": "Advanced" }
       ]
     }
   ]

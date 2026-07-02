@@ -1,8 +1,11 @@
 import { motion } from 'motion/react';
 import resumeData from '../data/resume.json';
-import { Download, ExternalLink, Calendar, MapPin } from 'lucide-react';
+import { Download, ExternalLink, Calendar, MapPin, Award, BookOpen, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Resume() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <main className="max-w-6xl mx-auto py-32 px-6">
       <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
@@ -28,7 +31,7 @@ export default function Resume() {
             <div className="space-y-12">
               {resumeData.experience.map((exp: any, idx: number) => (
                 <motion.div 
-                  key={exp.company}
+                  key={exp.company + idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -44,6 +47,11 @@ export default function Resume() {
                       {exp.period}
                     </div>
                   </div>
+                  {exp.location && (
+                    <div className="flex items-center gap-1 text-xs font-bold text-gray-400 mb-3">
+                      <MapPin size={12} /> {exp.location}
+                    </div>
+                  )}
                   <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6 pl-0 md:pl-0">
                     {exp.description}
                   </p>
@@ -64,14 +72,59 @@ export default function Resume() {
                 <div key={edu.institution} className="p-8 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-[2.5rem] group hover:border-cyan-600/30 transition-colors">
                   <h4 className="text-xl font-black text-gray-900 dark:text-white mb-2">{edu.degree}</h4>
                   <p className="text-gray-600 dark:text-gray-400 font-bold mb-4">{edu.institution}</p>
-                  <div className="flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest mb-2">
                     <Calendar size={12} />
                     Class of {edu.year}
                   </div>
+                  {edu.details && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-3">{edu.details}</p>
+                  )}
                 </div>
               ))}
             </div>
           </section>
+
+          {/* Achievements Section */}
+          {resumeData.achievements && resumeData.achievements.length > 0 && (
+            <section>
+              <div className="flex items-center gap-4 mb-10">
+                <span className="w-12 h-[1px] bg-gray-200 dark:bg-gray-800" />
+                <h3 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest">Awards & Honors</h3>
+              </div>
+              <div className="space-y-4">
+                {resumeData.achievements.map((achievement: string, idx: number) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="flex items-center gap-4 p-5 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl"
+                  >
+                    <Award className="w-5 h-5 text-cyan-600 shrink-0" />
+                    <span className="font-bold text-gray-700 dark:text-gray-300">{achievement}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Memberships */}
+          {resumeData.memberships && resumeData.memberships.length > 0 && (
+            <section>
+              <div className="flex items-center gap-4 mb-10">
+                <span className="w-12 h-[1px] bg-gray-200 dark:bg-gray-800" />
+                <h3 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest">Memberships</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {resumeData.memberships.map((membership: string, idx: number) => (
+                  <span key={idx} className="px-4 py-2 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-xl text-sm font-bold text-gray-700 dark:text-gray-300">
+                    {membership}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         <aside className="lg:col-span-4 space-y-12">
@@ -93,13 +146,15 @@ export default function Resume() {
             <h3 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest mb-8">Quick Links</h3>
             <div className="space-y-4">
               {[
-                { name: 'LinkedIn Profile', href: 'https://linkedin.com/in/rohan' },
-                { name: 'GitHub Repos', href: 'https://github.com/rohan' },
+                { name: 'LinkedIn Profile', href: 'https://linkedin.com/in/rohanvashist01' },
+                { name: 'GitHub Repos', href: 'https://github.com/ROHANVASHIST' },
                 { name: 'Portfolio Site', href: '/' },
               ].map(link => (
                 <a 
                   key={link.name}
                   href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl font-bold text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors group"
                 >
                   {link.name}
@@ -109,9 +164,21 @@ export default function Resume() {
             </div>
           </section>
 
+          <section className="p-10 bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-gray-800">
+            <h3 className="text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-widest mb-8">Languages</h3>
+            <div className="space-y-4">
+              {resumeData.languages && resumeData.languages.map((lang: any) => (
+                <div key={lang.name} className="flex items-center justify-between p-4 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl font-bold">
+                  <span className="text-gray-900 dark:text-white">{lang.name}</span>
+                  <span className="text-xs text-gray-400">{lang.level}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
           <div className="p-10 text-center">
             <div className="inline-flex items-center gap-2 text-xs font-black text-gray-400 dark:text-gray-600 uppercase tracking-[0.2em] mb-4">
-              <MapPin size={14} /> New York, NY
+              <MapPin size={14} /> New Delhi, India
             </div>
             <p className="text-gray-400 text-xs italic">References available upon request.</p>
           </div>

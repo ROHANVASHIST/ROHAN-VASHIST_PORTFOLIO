@@ -14,7 +14,7 @@ export default function Services() {
           </h2>
         </div>
         <p className="text-xl text-gray-500 dark:text-gray-400 max-w-sm leading-relaxed self-end">
-          Tailored engineering and development services focused on performance, durability, and elegance.
+          Tailored AI engineering, clean energy research, and full-stack development services for forward-thinking organizations.
         </p>
       </div>
 

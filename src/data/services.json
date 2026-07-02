@@ -1,14 +1,24 @@
 {
   "services": [
     {
-      "title": "Energy Consulting",
-      "description": "Expert advice on sustainable energy transitions and biomass technology.",
-      "deliverables": ["Feasibility studies", "Sustainability roadmap", "Technical reports"]
+      "title": "AI-Powered Web Development",
+      "description": "Building robust, scalable web applications with AI integration for smart automation, SEO optimization, and enhanced user experiences.",
+      "deliverables": ["Custom React/TypeScript apps", "AI-powered features & automation", "Full-stack API development", "SEO optimization tools"]
     },
     {
-      "title": "Web Development",
-      "description": "Creating robust, scalable web applications.",
-      "deliverables": ["Custom React apps", "Backend API development", "System architecture"]
+      "title": "Energy & Sustainability Consulting",
+      "description": "Expert advice on sustainable energy transitions, hydrogen technologies, biomass gasification, and clean energy solutions for businesses and research projects.",
+      "deliverables": ["Feasibility studies", "Sustainability roadmap", "Technical reports", "Energy efficiency analysis"]
+    },
+    {
+      "title": "Research & Technical Writing",
+      "description": "Comprehensive research support for environmental sustainability, renewable energy technologies, and climate change initiatives with detailed technical documentation.",
+      "deliverables": ["Research papers & reports", "Data collection & analysis", "Literature reviews", "Technical documentation"]
+    },
+    {
+      "title": "Prompt Engineering & AI Tools",
+      "description": "Specialized AI prompt engineering and tool development to automate workflows, generate content, and optimize business processes using cutting-edge AI/ML technologies.",
+      "deliverables": ["AI-powered content generators", "Workflow automation tools", "Custom AI/ML solutions", "Prompt optimization strategies"]
     }
   ]
 }

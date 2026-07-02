@@ -310,7 +310,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
             >
               <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" />
-              <span className="text-sm font-bold text-cyan-100/90">Engineering Excellence & Digital Innovation</span>
+              <span className="text-sm font-bold text-cyan-100/90">AI Engineering & Clean Energy Innovation</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-8xl font-black tracking-tight mb-6 leading-[0.95]">
@@ -418,10 +418,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.05),transparent_50%)]" />
         <div className="max-w-6xl mx-auto relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            <AnimatedCounter value={10} suffix="+" label="Projects Completed" duration={2} />
-            <AnimatedCounter value={5} suffix="+" label="Technologies Mastered" duration={2.5} />
-            <AnimatedCounter value={3} suffix="+" label="Years of Experience" duration={3} />
-            <AnimatedCounter value={100} suffix="%" label="Commitment to Quality" duration={2} />
+            <AnimatedCounter value={9} suffix="+" label="Projects Completed" duration={2} />
+            <AnimatedCounter value={12} suffix="+" label="Technologies Mastered" duration={2.5} />
+            <AnimatedCounter value={1} suffix="+" label="Years of Experience" duration={3} />
+            <AnimatedCounter value={9.42} suffix=" GPA" label="Academic Excellence" duration={2} />
           </div>
         </div>
       </section>
@@ -529,17 +529,17 @@ export default function Home() {
                 Expertise & <span className="gradient-text">Capabilities</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                Combining rigorous engineering principles with cutting-edge digital development to build robust, scalable solutions.
+                Bridging AI and software engineering with renewable energy research to build intelligent, sustainable solutions.
               </p>
             </div>
           </SectionReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Cpu, title: "Precision Engineering", desc: "Modeling and optimization of complex mechanical systems.", color: "cyan" },
-              { icon: Code, title: "Full-Stack Dev", desc: "Building high-performance apps with React, TS, and Node.", color: "purple" },
-              { icon: Database, title: "Data Systems", desc: "Real-time processing and visualization for scientific data.", color: "emerald" },
-              { icon: Globe, title: "Sustainability", desc: "Clean tech innovations and bio-energy system design.", color: "amber" },
+              { icon: Cpu, title: "AI & Software Dev", desc: "Building AI-powered tools, SEO generators, and full-stack platforms with modern tech.", color: "cyan" },
+              { icon: Code, title: "Clean Energy Research", desc: "Advancing hydrogen tech, electrochemical water splitting, and carbon capture solutions.", color: "purple" },
+              { icon: Database, title: "Data & Analytics", desc: "Analyzing energy systems, performance metrics, and optimizing infrastructure efficiency.", color: "emerald" },
+              { icon: Globe, title: "Sustainability", desc: "Driving green hydrogen policy, biomass analysis, and sustainable energy transitions.", color: "amber" },
             ].map((item, index) => (
               <motion.div
                 key={index}

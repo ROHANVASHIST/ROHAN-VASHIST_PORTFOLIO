@@ -1,18 +1,104 @@
 {
   "education": [
     {
-      "institution": "University of Engineering",
-      "degree": "B.Sc. in Energy Systems",
-      "year": "2020-2024"
+      "institution": "University School of Chemical Technology (USCT), GGSIPU, New Delhi",
+      "degree": "B.Tech (Hons. with Research) in Energy Engineering",
+      "year": "2024-2028",
+      "gpa": "9.42 GPA (as of 3rd Semester)",
+      "details": "Specialized in sustainable energy infrastructure, power generation systems, efficiency optimization, and energy policy. Working on honors-level research including: AI for Energy Consumption (developing scalable intelligence for infrastructure energy efficiency), Electrochemical Water Splitting (researching clean hydrogen production), CO₂ Reduction Technologies (investigating CCUS approaches), White Hydrogen Exploration (evaluating feasibility in India), and a Micro-Viscosity Review Paper on advanced water treatment methods."
+    },
+    {
+      "institution": "Aspire Institute, Cambridge, Massachusetts, USA",
+      "degree": "Aspire Leaders Program Scholar",
+      "year": "Expected 04/2027",
+      "details": "Selected for a competitive global program for emerging changemakers. Engaging in cross-cultural problem solving, leadership workshops, and global sustainability case studies. Awarded Top Performer within the Aspire Leaders framework."
     }
   ],
   "experience": [
     {
-      "company": "Tech Solutions Inc.",
-      "role": "Frontend Developer",
-      "period": "2024-Present",
-      "description": "Building interactive user interfaces and optimizing web performance."
+      "company": "Quild",
+      "role": "AI Engineer Intern",
+      "period": "04/2026 - Current",
+      "location": "New Delhi, India",
+      "description": "Architecting AI-driven tools bridging advanced technology with strategic business growth. KeilHQ: Developing solutions aimed at streamlining professional workflows and enhancing productivity. PodSoft: Designing intelligent tools to optimize content creation and digital distribution pipelines."
+    },
+    {
+      "company": "Qollabb",
+      "role": "Campus Ambassador",
+      "period": "05/2026 - Current",
+      "location": "New Delhi, India",
+      "description": "Serving as a primary liaison between students and the organization to drive platform engagement and gather targeted feedback. Organizing and promoting campus events, technical workshops, and collaboration initiatives. Executing strategic social media campaigns and peer-to-peer networking to maximize brand visibility."
+    },
+    {
+      "company": "Evepaper",
+      "role": "Research and Promotion Intern",
+      "period": "05/2026 - 08/2026",
+      "location": "New Delhi, India",
+      "description": "Conducted data-driven market research to identify emerging trends, consumer preferences, and growth opportunities. Collaborated with content and marketing squads to design, launch, and track strategic digital campaigns. Analyzed performance metrics to continuously evaluate and optimize promotional reach."
+    },
+    {
+      "company": "International Institute of SDGs & Public Policy Research",
+      "role": "Research Intern",
+      "period": "06/2026 - 07/2026",
+      "location": "New Delhi, India",
+      "description": "Investigated environmental sustainability policies, climate change mitigation, and ecological conservation initiatives. Handled data collection, methodological modeling, and rigorous report formulation in a multidisciplinary research team. Contributed directly to drafting research papers and knowledge-sharing presentations."
+    },
+    {
+      "company": "Future Intern",
+      "role": "Prompt Engineer Intern",
+      "period": "05/2026 - 06/2026",
+      "location": "New Delhi, India",
+      "description": "Successfully conceptualized and deployed three distinct applications targeting local business scaling: AI-Powered SEO Generator (automates blog and content optimization to drive organic traffic), UGC Ad Generator (empowers brands to utilize authentic user-generated content for high-engagement ads), and Instant Website Generator (simplifies rapid, low-effort web deployments for local merchants)."
     }
   ],
-  "skills": ["React", "TypeScript", "Node.js", "Tailwind CSS", "Firebase"]
+  "skills": [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "Tailwind CSS",
+    "AI Orchestration",
+    "Prompt Engineering",
+    "Full Stack Web Development",
+    "Git Management",
+    "Text Editor/Block-Based Architecture",
+    "Renewable Energy",
+    "Hydrogen Technology",
+    "Green Hydrogen Policy",
+    "Biomass Gasification",
+    "White Hydrogen Potential",
+    "Electrochemical Analysis",
+    "Cyclic Voltammetry",
+    "Conductometric Titrations",
+    "Potentiometric Titrations",
+    "Butler-Volmer Applications",
+    "FTIR",
+    "XRD",
+    "Technical Writing",
+    "Project Management",
+    "Digital Marketing",
+    "Community Leadership"
+  ],
+  "languages": [
+    { "name": "Hindi", "level": "Native (C2)" },
+    { "name": "English", "level": "Proficient / Native" }
+  ],
+  "achievements": [
+    "State Champion (VBYLD2026): Won the MY Bharat Budget Quest championship",
+    "Academic Excellence: Ranked 1st throughout both 10th and 12th standards",
+    "Top Performer in Aspire Leaders Programs"
+  ],
+  "memberships": [
+    "The Stanford Energy Club",
+    "CSR Club",
+    "Srijan Science Club",
+    "National Service Scheme (NSS)",
+    "MY Bharat National Volunteer Framework"
+  ],
+  "onlineLearning": [
+    "Aspire Leaders Program | Aspire Institute, Cambridge, USA (Expected completion: 04/2027)",
+    "Quild Cohort 2.0: Certified in AI Orchestration",
+    "30+ Google Cloud Skill Boost online courses",
+    "Class Central online courses"
+  ]
 }

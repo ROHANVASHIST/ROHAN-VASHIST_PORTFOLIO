@@ -73,11 +73,18 @@ export default function Contact() {
             <p className="text-gray-900 dark:text-gray-100 font-medium">rohanvashist01@gmail.com</p>
           </div>
           <div>
+            <h3 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-2">Phone</h3>
+            <p className="text-gray-900 dark:text-gray-100 font-medium">+91 9958272427</p>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-2">Location</h3>
+            <p className="text-gray-900 dark:text-gray-100 font-medium">New Delhi, India 110043</p>
+          </div>
+          <div>
             <h3 className="text-sm font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-2">Social</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">LinkedIn</a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">GitHub</a>
-              <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Twitter</a>
+              <a href="https://linkedin.com/in/rohanvashist01" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">LinkedIn</a>
+              <a href="https://github.com/ROHANVASHIST" target="_blank" rel="noopener noreferrer" className="text-gray-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">GitHub</a>
             </div>
           </div>
         </div>

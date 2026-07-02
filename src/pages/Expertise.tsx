@@ -5,12 +5,10 @@ import InteractiveEnergyLab from '../components/InteractiveEnergyLab';
 import SkillsVisualizer from '../components/SkillsVisualizer';
 
 const ICON_MAP: Record<string, any> = {
-  "Mechanical Engineering": Cpu,
-  "Software Development": Code,
-  "Scientific Computing": Database,
-  "Sustainability": Zap,
-  "Security": Shield,
-  "Analytics": BarChart
+  "AI & Software Development": Code,
+  "Renewable Energy & Hydrogen": Cpu,
+  "Analytical & Electrochemical": Database,
+  "Soft Skills & Leadership": Shield
 };
 
 export default function Expertise() {

@@ -1,14 +1,32 @@
 {
   "name": "Rohan Vashist",
-  "headline": "Energy Engineer | Full-Stack Developer | Sustainability Innovator",
-  "bio": "I bridge the gap between heavy engineering systems and modern digital interfaces. Crafting optimized solutions for a cleaner, more efficient future through precision code and thermodynamics.",
-  "email": "rohan.vashist@example.com",
-  "linkedin": "https://linkedin.com/in/rrohanvashist",
-  "github": "https://github.com/rohanvashist",
+  "headline": "AI Engineer Intern & Clean Energy Researcher",
+  "bio": "An AI Engineer Intern and Researcher with a solid foundation in Energy Engineering, Renewable Energy, and Hydrogen Technologies, seamlessly combined with hands-on experience in full-stack software development. Passionate about advancing clean energy solutions—including data center energy optimization, electrochemical water splitting, and carbon capture (CO₂ reduction). Experienced in building AI-powered productivity tools, SEO generators, and web platforms. Demonstrates proven leadership as a global program scholar, campus ambassador, and community volunteer.",
+  "email": "rohanvashist01@gmail.com",
+  "phone": "+91 9958272427",
+  "linkedin": "https://linkedin.com/in/rohanvashist01",
+  "github": "https://github.com/ROHANVASHIST",
   "location": "New Delhi, India",
   "education": {
-    "degree": "B.Tech in Energy Engineering",
-    "institution": "University School of Chemical Technology (USCT), GGSIPU",
-    "graduationYear": 2025
-  }
+    "degree": "B.Tech (Hons. with Research) in Energy Engineering",
+    "institution": "University School of Chemical Technology (USCT), GGSIPU, New Delhi",
+    "graduationYear": 2028,
+    "gpa": "9.42 GPA (as of 3rd Semester)"
+  },
+  "achievements": [
+    "State Champion (VBYLD2026): Won the MY Bharat Budget Quest championship",
+    "Academic Excellence: Ranked 1st throughout both 10th and 12th standards",
+    "Top Performer in Aspire Leaders Programs"
+  ],
+  "memberships": [
+    "The Stanford Energy Club",
+    "CSR Club",
+    "Srijan Science Club",
+    "National Service Scheme (NSS)",
+    "MY Bharat National Volunteer Framework"
+  ],
+  "languages": [
+    { "name": "Hindi", "level": "Native (C2)" },
+    { "name": "English", "level": "Proficient / Native" }
+  ]
 }
