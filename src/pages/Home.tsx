@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
-import { ArrowRight, Code, Database, Globe, Cpu, Sparkles, ChevronDown, Github, Linkedin, Mail, ExternalLink, Star } from 'lucide-react';
+import { ArrowRight, Code, Database, Globe, Cpu, Sparkles, ChevronDown, Github, Linkedin, Mail, ExternalLink, Star, MapPin, GraduationCap, Award, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import defaultProfileData from '../data/profile.json';
 import defaultSkillsData from '../data/skills.json';
@@ -267,7 +267,7 @@ export default function Home() {
   const profileData = useData('profile', defaultProfileData);
   const { data: projectsData, loading: projectsLoading } = useDataWithLoading('projects', defaultProjectsData);
   
-  const featuredProjects = projectsData.projects.slice(0, 3);
+  const featuredProjects = [...projectsData.projects].sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1)).slice(0, 3);
 
   return (
     <main className="overflow-hidden">
@@ -332,17 +332,45 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl md:text-2xl text-cyan-100/80 mb-4 max-w-2xl mx-auto font-light leading-relaxed"
+              className="text-xl md:text-2xl text-cyan-100/80 mb-3 max-w-2xl mx-auto font-light leading-relaxed"
             >
               <TypewriterText text={profileData.headline} delay={0.8} />
+            </motion.p>
+
+            {/* Info chips */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+              className="flex flex-wrap justify-center gap-2.5 mb-6"
+            >
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-xl text-xs font-medium text-cyan-100/70 border border-white/10">
+                <MapPin className="w-3 h-3 text-cyan-400" /> {profileData.location}
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-xl text-xs font-medium text-cyan-100/70 border border-white/10">
+                <GraduationCap className="w-3 h-3 text-cyan-400" /> {profileData.education.degree}
+              </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-xl text-xs font-medium text-cyan-100/70 border border-white/10">
+                <Award className="w-3 h-3 text-cyan-400" /> {profileData.education.gpa}
+              </div>
+            </motion.div>
+
+            {/* Bio summary */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.85 }}
+              className="text-sm md:text-base text-white/40 max-w-3xl mx-auto leading-relaxed mb-8 line-clamp-3"
+            >
+              {profileData.bio}
             </motion.p>
 
             {/* Social links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex items-center justify-center gap-4 mb-10"
+              transition={{ duration: 0.6, delay: 0.95 }}
+              className="flex items-center justify-center gap-4 mb-8"
             >
               {profileData.github && (
                 <a href={profileData.github} target="_blank" rel="noopener noreferrer"
@@ -370,23 +398,50 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ duration: 0.6, delay: 1.05 }}
+              className="flex flex-wrap gap-3 justify-center"
             >
               <Link to="/projects">
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-cyan-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl shadow-cyan-600/30 hover:bg-cyan-500 transition-all duration-300 group"
+                  className="px-7 py-3.5 bg-cyan-600 text-white rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-cyan-600/30 hover:bg-cyan-500 transition-all duration-300 group text-sm"
                 >
-                  Explore My Work <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  View Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </Link>
+              <Link to="/research">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-7 py-3.5 bg-white/10 text-white backdrop-blur-md rounded-2xl border border-white/20 font-bold hover:bg-white/20 transition-all duration-300 text-sm"
+                >
+                  Research
+                </motion.button>
+              </Link>
+              <Link to="/expertise">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-7 py-3.5 bg-white/10 text-white backdrop-blur-md rounded-2xl border border-white/20 font-bold hover:bg-white/20 transition-all duration-300 text-sm"
+                >
+                  Expertise
+                </motion.button>
+              </Link>
+              <Link to="/resume">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-7 py-3.5 bg-white/10 text-white backdrop-blur-md rounded-2xl border border-white/20 font-bold hover:bg-white/20 transition-all duration-300 text-sm"
+                >
+                  Resume
                 </motion.button>
               </Link>
               <Link to="/contact">
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white/10 text-white backdrop-blur-md rounded-2xl border border-white/20 font-bold hover:bg-white/20 transition-all duration-300"
+                  className="px-7 py-3.5 bg-white/10 text-white backdrop-blur-md rounded-2xl border border-white/20 font-bold hover:bg-white/20 transition-all duration-300 text-sm"
                 >
                   Get in Touch
                 </motion.button>
@@ -418,9 +473,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.05),transparent_50%)]" />
         <div className="max-w-6xl mx-auto relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            <AnimatedCounter value={9} suffix="+" label="Projects Completed" duration={2} />
-            <AnimatedCounter value={12} suffix="+" label="Technologies Mastered" duration={2.5} />
-            <AnimatedCounter value={1} suffix="+" label="Years of Experience" duration={3} />
+            <AnimatedCounter value={14} suffix="+" label="Projects Completed" duration={2} />
+            <AnimatedCounter value={30} suffix="+" label="Technologies Mastered" duration={2.5} />
+            <AnimatedCounter value={2} suffix="+" label="Years of Experience" duration={3} />
             <AnimatedCounter value={9.42} suffix=" GPA" label="Academic Excellence" duration={2} />
           </div>
         </div>
