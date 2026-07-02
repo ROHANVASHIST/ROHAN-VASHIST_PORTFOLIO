@@ -12,7 +12,18 @@
         { "name": "TypeScript", "level": "Advanced" },
         { "name": "Node.js", "level": "Advanced" },
         { "name": "Python", "level": "Intermediate" },
-        { "name": "Tailwind CSS", "level": "Advanced" }
+        { "name": "Tailwind CSS", "level": "Advanced" },
+        { "name": "Next.js", "level": "Intermediate" },
+        { "name": "Express.js", "level": "Advanced" },
+        { "name": "Socket.io", "level": "Intermediate" },
+        { "name": "JWT Authentication", "level": "Intermediate" },
+        { "name": "REST API Design", "level": "Advanced" },
+        { "name": "JavaScript", "level": "Advanced" },
+        { "name": "HTML5/CSS3", "level": "Advanced" },
+        { "name": "SASS", "level": "Intermediate" },
+        { "name": "MySQL", "level": "Intermediate" },
+        { "name": "MongoDB", "level": "Intermediate" },
+        { "name": "PostgreSQL", "level": "Intermediate" }
       ]
     },
     {

@@ -147,7 +147,9 @@ export default function Resume() {
             <div className="space-y-4">
               {[
                 { name: 'LinkedIn Profile', href: 'https://www.linkedin.com/in/rohanvashist01' },
-                { name: 'GitHub Repos', href: 'https://github.com/ROHANVASHIST' },
+                { name: 'GitHub Profile', href: 'https://github.com/ROHANVASHIST' },
+                { name: 'Nobel Hub', href: 'https://github.com/ROHANVASHIST/NOBEL-HUB' },
+                { name: 'Live Chat App', href: 'https://github.com/ROHANVASHIST/liveat-' },
                 { name: 'Portfolio Site', href: '/' },
               ].map(link => (
                 <a 

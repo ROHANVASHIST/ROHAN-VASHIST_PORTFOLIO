@@ -11,7 +11,7 @@
         "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
       ],
-      "github": "https://github.com/ROHANVASHIST/seo-generator",
+      "github": "https://github.com/ROHANVASHIST/FUTURE_PE_03",
       "demo": "",
       "featured": true,
       "keyFeatures": ["AI-powered content optimization", "Keyword analysis & suggestions", "SEO scoring system", "Blog content analysis"],
@@ -31,7 +31,7 @@
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
       ],
-      "github": "https://github.com/ROHANVASHIST/website-generator",
+      "github": "https://github.com/ROHANVASHIST/FUTURE_PE_01",
       "demo": "",
       "featured": true,
       "keyFeatures": ["AI-driven website generation", "No-code interface", "Customizable templates", "One-click deployment"],
@@ -51,7 +51,7 @@
         "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
       ],
-      "github": "https://github.com/ROHANVASHIST/ugc-ad-generator",
+      "github": "https://github.com/ROHANVASHIST/FUTURE_PE_02",
       "demo": "",
       "featured": false,
       "keyFeatures": ["UGC content aggregation", "AI-driven ad generation", "Campaign management", "Analytics dashboard"],
@@ -178,6 +178,66 @@
       "problem": "The potential of naturally occurring (white) hydrogen reserves in India remained largely unexplored and unassessed.",
       "solution": "Conducted comprehensive research on white hydrogen reserves in India, assessing their feasibility and potential for clean energy development.",
       "learnings": "Gained insights into geological hydrogen systems, energy policy frameworks, and India's clean energy transition landscape.",
+      "status": "Completed"
+    },
+    {
+      "id": 10,
+      "title": "Concierge – Chat Application",
+      "description": "A cross-device chat application that solves connection issues between multiple devices. Simply login on any device and start chatting to transfer information seamlessly. Built as a real-time communication platform.",
+      "technologies": ["TypeScript", "React", "Node.js", "Socket.io", "WebSockets"],
+      "image": "/images/projects/liveat.png",
+      "images": [
+        "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "github": "https://github.com/ROHANVASHIST/liveat-",
+      "demo": "",
+      "featured": true,
+      "keyFeatures": ["Multi-device synchronization", "Real-time messaging", "Cross-platform login", "Seamless file transfer"],
+      "problem": "Users struggled with fragmented communication across multiple devices, needing a unified chat platform.",
+      "solution": "Developed a synchronized chat application allowing seamless communication from any logged-in device.",
+      "learnings": "Mastered real-time WebSocket architecture, device synchronization patterns, and cross-platform state management.",
+      "status": "Completed"
+    },
+    {
+      "id": 11,
+      "title": "Nobel Hub",
+      "description": "A comprehensive platform to discover Nobel laureate profiles, explore Nobel lectures, breakthrough research papers, and powerful analytics — all in one beautiful interface.",
+      "technologies": ["TypeScript", "React", "Vite", "Data Visualization", "REST API"],
+      "image": "/images/projects/nobel-hub.png",
+      "images": [
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "github": "https://github.com/ROHANVASHIST/NOBEL-HUB",
+      "demo": "",
+      "featured": true,
+      "keyFeatures": ["Laureate profiles & biographies", "Nobel lecture archives", "Research paper integration", "Interactive analytics dashboard"],
+      "problem": "Nobel Prize information was scattered across multiple sources, making it hard to explore comprehensively.",
+      "solution": "Built a unified platform aggregating laureate profiles, lectures, and research papers with interactive analytics.",
+      "learnings": "Gained experience in data aggregation, API integration, and building analytics-driven educational platforms.",
+      "status": "Completed"
+    },
+    {
+      "id": 12,
+      "title": "Protein Atlas Prognosis",
+      "description": "A platform for exploring protein expression data and analyzing prognostic markers in biomedical research.",
+      "technologies": ["TypeScript", "Bioinformatics", "React", "Data Analysis"],
+      "image": "/images/projects/protein-atlas.png",
+      "images": [
+        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1200"
+      ],
+      "github": "https://github.com/ROHANVASHIST/protein-atlas-prognosis",
+      "demo": "",
+      "featured": false,
+      "keyFeatures": ["Protein expression analysis", "Prognostic marker identification", "Data visualization", "Bioinformatics pipelines"],
+      "problem": "Biomedical researchers needed accessible tools to analyze protein expression data and identify prognostic markers.",
+      "solution": "Developed a platform that simplifies protein data analysis and visualization for prognostic research.",
+      "learnings": "Deepened understanding of bioinformatics, protein data analysis, and scientific data visualization techniques.",
       "status": "Completed"
     }
   ]
