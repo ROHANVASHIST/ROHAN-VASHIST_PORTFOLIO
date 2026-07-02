@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Leaf, Info, ChevronRight, BarChart3, TrendingUp, DollarSign, 
@@ -9,6 +9,8 @@ import {
 } from 'recharts';
 
 export default function ClimateFeasibilityLab() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [activeModule, setActiveModule] = useState<'dac' | 'desal' | 'h2'>('dac');
 
   // --- 1. DAC CONFIG STATE ---
@@ -591,7 +593,7 @@ export default function ClimateFeasibilityLab() {
               </div>
 
               <div className="h-[210px] w-full text-[10px] font-mono select-none">
-                <ResponsiveContainer width="100%" height="100%">
+                {mounted && <ResponsiveContainer width="100%" height="100%">
                   <AreaChart 
                     data={financialProjection.chartPoints} 
                     margin={{ top: 10, right: 10, left: -25, bottom: -10 }}
@@ -638,7 +640,7 @@ export default function ClimateFeasibilityLab() {
                       name="CO₂ Offset (Tons)"
                     />
                   </AreaChart>
-                </ResponsiveContainer>
+                </ResponsiveContainer>}
               </div>
             </div>
 

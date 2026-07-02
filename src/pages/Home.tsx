@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
-import { ArrowRight, Code, Database, Globe, Cpu, Sparkles, ChevronDown, Github, Linkedin, Mail, ExternalLink, Star, MapPin, GraduationCap, Award, BookOpen } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame } from 'motion/react';
+import { ArrowRight, Code, Database, Globe, Cpu, Sparkles, ChevronDown, Github, Linkedin, Mail, ExternalLink, Star, MapPin, GraduationCap, Award, BookOpen, Terminal, Braces, Box, Hexagon, Layers, Zap, Pointer, CircleDot, Gauge } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import defaultProfileData from '../data/profile.json';
 import defaultSkillsData from '../data/skills.json';
@@ -95,6 +95,326 @@ function FloatingParticles({ count = 20 }: { count?: number }) {
   );
 }
 
+// ─── Animated Gradient Mesh ───────────────────────────────
+function AnimatedGradientMesh() {
+  const t = useRef(0);
+  const [gradient, setGradient] = useState('radial-gradient(circle at 30% 40%, rgba(6,182,212,0.08), transparent 50%), radial-gradient(circle at 70% 60%, rgba(147,51,234,0.06), transparent 50%)');
+
+  useAnimationFrame((delta) => {
+    t.current += delta / 10000;
+    const x1 = 30 + Math.sin(t.current * 0.7) * 20;
+    const y1 = 40 + Math.cos(t.current * 0.5) * 20;
+    const x2 = 70 + Math.sin(t.current * 0.6 + 2) * 15;
+    const y2 = 60 + Math.cos(t.current * 0.8 + 1) * 15;
+    setGradient(
+      `radial-gradient(circle at ${x1}% ${y1}%, rgba(6,182,212,0.08), transparent 50%), radial-gradient(circle at ${x2}% ${y2}%, rgba(147,51,234,0.06), transparent 50%)`
+    );
+  });
+
+  return (
+    <div className="absolute inset-0 transition-[background] duration-500 pointer-events-none" style={{ background: gradient }} />
+  );
+}
+
+// ─── Floating Tech Icons ──────────────────────────────────
+function FloatingTechIcons() {
+  const icons = [
+    { Icon: Braces, label: 'React', color: 'text-cyan-400' },
+    { Icon: Terminal, label: 'Python', color: 'text-purple-400' },
+    { Icon: Box, label: 'Docker', color: 'text-blue-400' },
+    { Icon: Hexagon, label: 'ML', color: 'text-emerald-400' },
+    { Icon: Layers, label: 'Linux', color: 'text-amber-400' },
+    { Icon: CircleDot, label: 'Node', color: 'text-green-400' },
+  ];
+  const radius = 220;
+  const ref = useRef<HTMLDivElement>(null);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+    window.addEventListener('mousemove', handleMouse);
+    return () => window.removeEventListener('mousemove', handleMouse);
+  }, []);
+
+  return (
+    <div ref={ref} className="absolute inset-0 pointer-events-none overflow-hidden">
+      {icons.map((item, i) => {
+        const angle = (i / icons.length) * Math.PI * 2;
+        const orbitSpeed = 0.0003 + i * 0.00004;
+        const orbitOffset = i * 1.5;
+        return (
+          <motion.div
+            key={i}
+            className={`absolute left-1/2 top-1/2 ${item.color}`}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20 + i * 3, repeat: Infinity, ease: 'linear' }}
+            style={{ marginLeft: -14, marginTop: -14, originX: 0, originY: 0 }}
+          >
+            <motion.div
+              className="flex flex-col items-center gap-1"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 20 + i * 3, repeat: Infinity, ease: 'linear' }}
+              style={{ x: Math.cos(angle) * radius, y: Math.sin(angle) * radius }}
+            >
+              <div className="w-8 h-8 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <item.Icon className="w-4 h-4" />
+              </div>
+              <span className="text-[8px] font-bold text-white/30 uppercase tracking-wider">{item.label}</span>
+            </motion.div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── Glow Trail ──────────────────────────────────────────
+function GlowTrail({ count = 8 }: { count?: number }) {
+  const trail = useRef<Array<{ x: number; y: number; id: number }>>([]);
+  const [points, setPoints] = useState<Array<{ x: number; y: number; id: number; opacity: number }>>([]);
+
+  useEffect(() => {
+    let frameId: number;
+    let mouse = { x: -100, y: -100 };
+
+    const handleMouse = (e: MouseEvent) => {
+      mouse = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', handleMouse);
+
+    const tick = () => {
+      trail.current.unshift({ ...mouse, id: Date.now() });
+      if (trail.current.length > count) trail.current.pop();
+
+      setPoints(
+        trail.current.map((p, i) => ({
+          ...p,
+          opacity: 1 - i / (count + 1),
+        }))
+      );
+      frameId = requestAnimationFrame(tick);
+    };
+    frameId = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouse);
+      cancelAnimationFrame(frameId);
+    };
+  }, [count]);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[99]">
+      {points.map((p, i) => (
+        <motion.div
+          key={p.id}
+          className="absolute w-1.5 h-1.5 rounded-full bg-cyan-400"
+          style={{
+            left: p.x,
+            top: p.y,
+            opacity: p.opacity * 0.4,
+            boxShadow: '0 0 6px 2px rgba(6,182,212,0.3)',
+            scale: 1 - i * 0.08,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ─── Rotating Skill Ring ─────────────────────────────────
+function RotatingSkillRing() {
+  const skills = [
+    'React', 'TypeScript', 'Python', 'Node.js', 'Docker', 'Kubernetes',
+    'TensorFlow', 'PyTorch', 'MongoDB', 'PostgreSQL', 'Redis', 'AWS',
+  ];
+
+  return (
+    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] pointer-events-none opacity-40 hidden lg:block">
+      <motion.div
+        className="w-full h-full relative"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+      >
+        {skills.map((skill, i) => {
+          const angle = (i / skills.length) * Math.PI * 2;
+          const r = 130;
+          const x = Math.cos(angle) * r + 150;
+          const y = Math.sin(angle) * r + 150;
+          return (
+            <motion.span
+              key={skill}
+              className="absolute text-[10px] font-bold px-2 py-0.5 bg-white/5 rounded-lg border border-white/10 text-white/40 whitespace-nowrap"
+              style={{ left: x, top: y, transform: 'translate(-50%, -50%)' }}
+              animate={{ rotate: -360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+            >
+              {skill}
+            </motion.span>
+          );
+        })}
+      </motion.div>
+    </div>
+  );
+}
+
+// ─── Wave Divider ─────────────────────────────────────────
+function WaveDivider({ flip = false }: { flip?: boolean }) {
+  return (
+    <div className={`relative w-full h-24 md:h-32 ${flip ? 'rotate-180' : ''}`}>
+      <svg className="absolute bottom-0 w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <motion.path
+          d="M0,60 C320,120 480,0 720,60 C960,120 1120,0 1440,60 L1440,120 L0,120 Z"
+          fill="currentColor"
+          className="text-white dark:text-gray-950"
+          initial={{ d: 'M0,60 C320,120 480,0 720,60 C960,120 1120,0 1440,60 L1440,120 L0,120 Z' }}
+          whileInView={{
+            d: [
+              'M0,60 C320,120 480,0 720,60 C960,120 1120,0 1440,60 L1440,120 L0,120 Z',
+              'M0,80 C340,20 500,100 720,40 C940,100 1100,20 1440,80 L1440,120 L0,120 Z',
+              'M0,60 C320,120 480,0 720,60 C960,120 1120,0 1440,60 L1440,120 L0,120 Z',
+            ],
+          }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </svg>
+    </div>
+  );
+}
+
+// ─── Code Window ──────────────────────────────────────────
+function CodeWindow() {
+  const codeLines = [
+    { text: 'class Portfolio extends React.Component {', color: 'text-white/60', delay: 0 },
+    { text: '  constructor() {', color: 'text-white/50', delay: 0.3 },
+    { text: '    this.state = {', color: 'text-white/50', delay: 0.6 },
+    { text: '      role: "AI Engineer Intern",', color: 'text-cyan-300', delay: 0.9 },
+    { text: '      focus: "Clean Energy Research",', color: 'text-cyan-300', delay: 1.2 },
+    { text: '      passion: "Building Impact",', color: 'text-purple-300', delay: 1.5 },
+    { text: '    }', color: 'text-white/50', delay: 1.8 },
+    { text: '  }', color: 'text-white/50', delay: 2.1 },
+    { text: '}', color: 'text-white/60', delay: 2.4 },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+      className="absolute bottom-4 right-4 md:right-12 w-[280px] md:w-[340px] bg-gray-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-2xl shadow-cyan-500/5 hidden lg:block pointer-events-none"
+    >
+      <div className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 border-b border-white/5">
+        <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
+        <div className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+        <span className="ml-3 text-[10px] font-bold text-white/30 uppercase tracking-wider">portfolio.tsx</span>
+      </div>
+      <div className="p-4 font-mono text-xs leading-6">
+        {codeLines.map((line, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: line.delay + 1.8, duration: 0.3 }}
+            className={line.color}
+          >
+            <span className="text-white/20 mr-3 select-none">{i + 1}</span>
+            {line.text}
+            {i === 3 && <motion.span className="inline-block w-[2px] h-4 bg-cyan-400 ml-0.5 align-middle animate-pulse" />}
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Progress Ring Figure ────────────────────────────────
+function ProgressRing({ value, label, size = 80, strokeWidth = 5, color = 'stroke-cyan-400' }: { value: number; label: string; size?: number; strokeWidth?: number; color?: string }) {
+  const [progress, setProgress] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const r = size / 2 - strokeWidth * 2;
+  const circumference = 2 * Math.PI * r;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const end = value;
+          const increment = end / 60;
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+              setProgress(end);
+              clearInterval(timer);
+            } else {
+              setProgress(start);
+            }
+          }, 16);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
+  const offset = circumference - (progress / 100) * circumference;
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-2">
+      <svg width={size} height={size} className="transform -rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="currentColor" strokeWidth={strokeWidth} className="text-white/5" />
+        <motion.circle
+          cx={size / 2} cy={size / 2} r={r} fill="none"
+          strokeWidth={strokeWidth} strokeLinecap="round"
+          className={color}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          initial={false}
+        />
+        <motion.text
+          x={size / 2} y={size / 2}
+          textAnchor="middle" dominantBaseline="central"
+          className="fill-white text-xs font-bold"
+          transform="rotate(90, 50, 50)"
+        >
+          {Math.round(progress)}%
+        </motion.text>
+      </svg>
+      <span className="text-[10px] font-bold text-white/40 uppercase tracking-wider">{label}</span>
+    </div>
+  );
+}
+
+// ─── Hero Stat Figure ─────────────────────────────────────
+function HeroStatFigure({ icon: Icon, value, label, color = 'from-cyan-400 to-cyan-600' }: { icon: any; value: string; label: string; color?: string }) {
+  return (
+    <motion.div
+      whileHover={{ y: -4, scale: 1.03 }}
+      className="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 group cursor-default"
+    >
+      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${color} p-0.5`}>
+        <div className="w-full h-full rounded-[10px] bg-gray-900 flex items-center justify-center">
+          <Icon className="w-4 h-4 text-white" />
+        </div>
+      </div>
+      <div>
+        <motion.div
+          className="text-lg font-black text-white leading-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          {value}
+        </motion.div>
+        <div className="text-[10px] font-bold text-white/40 uppercase tracking-wider">{label}</div>
+      </div>
+    </motion.div>
+  );
+}
+
 // ─── Typewriter Effect ────────────────────────────────────
 function TypewriterText({ text, className = '', delay = 0 }: { text: string; className?: string; delay?: number }) {
   const [displayedText, setDisplayedText] = useState('');
@@ -120,7 +440,6 @@ function TypewriterText({ text, className = '', delay = 0 }: { text: string; cla
 
     startTyping();
 
-    // Blinking cursor
     const cursorInterval = setInterval(() => {
       setShowCursor((prev) => !prev);
     }, 500);
@@ -262,6 +581,103 @@ function ScrollProgressBar() {
   );
 }
 
+// ─── Marquee Skills ──────────────────────────────────────
+function MarqueeSkills() {
+  const skills = ['React', 'TypeScript', 'Python', 'Node.js', 'Docker', 'TensorFlow', 'PyTorch', 'Kubernetes', 'MongoDB', 'AWS', 'PostgreSQL', 'Redis', 'Go', 'Rust', 'GraphQL', 'Next.js', 'Tailwind', 'Figma'];
+
+  return (
+    <div className="absolute bottom-16 left-0 right-0 overflow-hidden pointer-events-none opacity-30">
+      <motion.div
+        className="flex gap-8 whitespace-nowrap"
+        animate={{ x: ['0%', '-50%'] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+      >
+        {[...skills, ...skills].map((s, i) => (
+          <span key={i} className="inline-flex items-center gap-2 text-xs font-bold text-white/40 uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            {s}
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+// ─── Bento Grid Hero Figure ──────────────────────────────
+function BentoGridFigure() {
+  const items = [
+    { label: 'GitHub', value: '20+ Repos', icon: Github, color: 'from-cyan-500/20 to-blue-500/10', delay: 2.2 },
+    { label: 'Commits', value: '500+', icon: Code, color: 'from-purple-500/20 to-pink-500/10', delay: 2.3 },
+    { label: 'Papers', value: '3+', icon: BookOpen, color: 'from-emerald-500/20 to-teal-500/10', delay: 2.4 },
+    { label: 'Tech Stack', value: 'Full Stack', icon: Layers, color: 'from-amber-500/20 to-orange-500/10', delay: 2.5 },
+  ];
+
+  return (
+    <div className="hidden md:grid grid-cols-2 gap-2 max-w-[200px] absolute bottom-8 left-8">
+      {items.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: item.delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className={`bg-gradient-to-br ${item.color} backdrop-blur-sm rounded-xl p-3 border border-white/10`}
+        >
+          <item.icon className="w-3 h-3 text-white/60 mb-1" />
+          <div className="text-xs font-black text-white">{item.value}</div>
+          <div className="text-[8px] font-bold text-white/30 uppercase tracking-wider">{item.label}</div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// ─── Animated Decorative Ring ────────────────────────────
+function DecorativeRing() {
+  return (
+    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-20">
+      <motion.div
+        className="w-[400px] h-[400px] border border-cyan-500/20 rounded-full"
+        animate={{ rotate: 360, scale: [1, 1.02, 1] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute inset-4 w-[368px] h-[368px] border border-purple-500/15 rounded-full"
+        animate={{ rotate: -360, scale: [1, 1.03, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute inset-8 w-[336px] h-[336px] border border-blue-500/10 rounded-full"
+        animate={{ rotate: 360, scale: [1, 1.01, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+      />
+      {Array.from({ length: 12 }).map((_, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 200;
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-cyan-400/30 rounded-full"
+            style={{
+              left: `calc(50% + ${Math.cos(angle) * r}px)`,
+              top: `calc(50% + ${Math.sin(angle) * r}px)`,
+            }}
+            animate={{
+              scale: [1, 2, 1],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 2 + (i % 3),
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.3,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Main Home Component ──────────────────────────────────
 export default function Home() {
   const profileData = useData('profile', defaultProfileData);
@@ -271,6 +687,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
+      <GlowTrail />
       <ScrollProgressBar />
       <SpotlightEffect />
 
@@ -279,6 +696,8 @@ export default function Home() {
         className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
         style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)), url(/profile.jpg)' }}
       >
+        <AnimatedGradientMesh />
+
         {/* Animated gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '6s' }} />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
@@ -294,6 +713,12 @@ export default function Home() {
         />
         
         <FloatingParticles count={25} />
+        <FloatingTechIcons />
+        <RotatingSkillRing />
+        <CodeWindow />
+        <DecorativeRing />
+        <MarqueeSkills />
+        <BentoGridFigure />
 
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white dark:to-gray-950 opacity-100" />
         
@@ -303,6 +728,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
+            {/* Headline badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -311,6 +737,18 @@ export default function Home() {
             >
               <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" />
               <span className="text-sm font-bold text-cyan-100/90">AI Engineering & Clean Energy Innovation</span>
+            </motion.div>
+
+            {/* Hero stat figures row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="flex flex-wrap justify-center gap-2 mb-6"
+            >
+              <HeroStatFigure icon={Github} value="20+ Repos" label="Open Source" color="from-cyan-400 to-blue-500" />
+              <HeroStatFigure icon={Star} value="500+ Commits" label="Contributions" color="from-purple-400 to-pink-500" />
+              <HeroStatFigure icon={BookOpen} value="3+ Papers" label="Research" color="from-emerald-400 to-teal-500" />
             </motion.div>
 
             <h1 className="text-5xl md:text-8xl font-black tracking-tight mb-6 leading-[0.95]">
@@ -468,6 +906,9 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Wave Divider */}
+      <WaveDivider />
+
       {/* Stats Counter Section */}
       <section className="py-16 md:py-24 px-6 bg-white dark:bg-gray-950 transition-colors relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.05),transparent_50%)]" />
@@ -480,6 +921,23 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Progress Ring Figures */}
+      <SectionReveal>
+        <section className="py-12 px-6 bg-white dark:bg-gray-950 transition-colors">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-4 md:grid-cols-4 gap-6 justify-items-center">
+              <ProgressRing value={92} label="Code" color="stroke-cyan-400" />
+              <ProgressRing value={85} label="DevOps" color="stroke-purple-400" />
+              <ProgressRing value={78} label="ML/AI" color="stroke-emerald-400" />
+              <ProgressRing value={88} label="Research" color="stroke-amber-400" />
+            </div>
+          </div>
+        </section>
+      </SectionReveal>
+
+      {/* Wave Divider (flipped) */}
+      <WaveDivider flip />
 
       {/* Featured Projects Section */}
       <section className="py-24 md:py-32 px-6 bg-white dark:bg-gray-950 transition-colors relative">

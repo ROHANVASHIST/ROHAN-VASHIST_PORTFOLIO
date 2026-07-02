@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceDot 
@@ -14,6 +14,8 @@ const A_H2 = 0.02476; // Van der Waals constant 'a' in Pa m^6 / mol^2
 const B_H2 = 2.661e-5; // Van der Waals constant 'b' in m^3 / mol
 
 export default function InteractiveEnergyLab() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [activeLab, setActiveLab] = useState<'h2' | 'dac' | 'desal'>('h2');
 
   // --- HYDROGEN LABORATORY STATE ---
@@ -409,7 +411,7 @@ export default function InteractiveEnergyLab() {
                 </div>
 
                 <div className="h-[230px] w-full text-xs font-mono">
-                  <ResponsiveContainer width="100%" height="100%">
+                  {mounted && <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={h2ChartData} margin={{ top: 10, right: 10, left: -20, bottom: -10 }}>
                       <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} />
                       <XAxis dataKey="pressure" stroke="#888888" fontSize={9} />
@@ -451,7 +453,7 @@ export default function InteractiveEnergyLab() {
                         strokeWidth={2} 
                       />
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer>}
                 </div>
               </div>
             </div>
@@ -602,7 +604,7 @@ export default function InteractiveEnergyLab() {
                 </div>
 
                 <div className="h-[210px] w-full text-xs font-mono">
-                  <ResponsiveContainer width="100%" height="100%">
+                  {mounted && <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={dacChartData} margin={{ top: 10, right: 10, left: -20, bottom: -10 }}>
                       <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} />
                       <XAxis dataKey="ppm" stroke="#888888" fontSize={9} />
@@ -643,7 +645,7 @@ export default function InteractiveEnergyLab() {
                         strokeWidth={2} 
                       />
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer>}
                 </div>
               </div>
             </div>
@@ -811,7 +813,7 @@ export default function InteractiveEnergyLab() {
                 </div>
 
                 <div className="h-[210px] w-full text-xs font-mono">
-                  <ResponsiveContainer width="100%" height="100%">
+                  {mounted && <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={desalChartData} margin={{ top: 10, right: 10, left: -20, bottom: -10 }}>
                       <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.15} />
                       <XAxis dataKey="temp" stroke="#888888" fontSize={9} />
@@ -852,7 +854,7 @@ export default function InteractiveEnergyLab() {
                         strokeWidth={2} 
                       />
                     </LineChart>
-                  </ResponsiveContainer>
+                  </ResponsiveContainer>}
                 </div>
               </div>
             </div>

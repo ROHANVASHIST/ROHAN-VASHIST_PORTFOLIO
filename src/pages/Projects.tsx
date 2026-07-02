@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useMemo, useCallback } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Filter, Search, Calendar, ExternalLink, Github, Tag } from 'lucide-react';
 import defaultProjectsData from '../data/projects.json';
@@ -7,6 +7,7 @@ import { useData, useDataWithLoading } from '../lib/useData';
 import ExpandableDescription from '../components/ExpandableDescription';
 
 export default function Projects() {
+  const navigate = useNavigate();
   const { data: projectsData, loading: projectsLoading } = useDataWithLoading('projects', defaultProjectsData);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -134,7 +135,13 @@ export default function Projects() {
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 className="group"
               >
-                <Link to={`/projects/${project.id}`} className="block h-full">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(`/projects/${project.id}`)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/projects/${project.id}`); }}
+                  className="block h-full cursor-pointer"
+                >
                   <div className="bg-gray-50 dark:bg-gray-900 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-2xl shadow-smooth h-full flex flex-col transition-all duration-500">
                     {/* Project Image */}
                     <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-800 overflow-hidden relative">
@@ -222,7 +229,7 @@ export default function Projects() {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))
           )}
