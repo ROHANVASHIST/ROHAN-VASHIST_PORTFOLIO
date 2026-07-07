@@ -59,6 +59,60 @@ export default function Research() {
       {/* Embedded High-Fidelity Research Hub Component */}
       <ResearchHub />
 
+      {/* Research & Academic Focus */}
+      <section className="mt-24">
+        <h3 className="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Research & Academic Focus</h3>
+        <h4 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-12">Areas of Investigation</h4>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-10">
+            <div className="w-10 h-10 bg-cyan-600/10 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6">
+              <Cpu size={18} />
+            </div>
+            <h5 className="text-xl font-black text-gray-900 dark:text-white mb-4">Sustainable Energy Systems</h5>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Conducted in-depth research on hydrogen production technologies, with a specific focus on the <strong className="text-gray-900 dark:text-white font-bold">National Green Hydrogen Mission</strong> and various electrolyzer mechanisms.</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Investigated <strong className="text-gray-900 dark:text-white font-bold">biomass gasification</strong> and thermochemical conversion pathways for renewable energy generation.</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Explored advanced water treatment methodologies, specifically the application and benefits of <strong className="text-gray-900 dark:text-white font-bold">micro-viscosity</strong> over traditional chemical/physical methods.</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Developing scalable intelligence for <strong className="text-gray-900 dark:text-white font-bold">AI-driven energy consumption</strong> optimization in infrastructure systems.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-10">
+            <div className="w-10 h-10 bg-cyan-600/10 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6">
+              <BookOpen size={18} />
+            </div>
+            <h5 className="text-xl font-black text-gray-900 dark:text-white mb-4">Analytical Chemistry & Characterization</h5>
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Applied electrochemical techniques including <strong className="text-gray-900 dark:text-white font-bold">conductometric and potentiometric titrations</strong> for quantitative analysis.</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Analyzed material properties using <strong className="text-gray-900 dark:text-white font-bold">FTIR</strong> (Fourier-Transform Infrared Spectroscopy) and <strong className="text-gray-900 dark:text-white font-bold">XRD</strong> (X-Ray Diffraction) techniques for data interpretation.</span>
+              </li>
+              <li className="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-600 mt-2 shrink-0" />
+                <span>Currently at <strong className="text-gray-900 dark:text-white font-bold">IISPPR</strong> exploring micro and macro plastics — investigating their environmental impact, detection methodologies, and policy frameworks for plastic pollution mitigation.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Future Research Interests Panel */}
       <section className="bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-10 md:p-14 mt-24">
         <h3 className="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-6">Future Horizons</h3>

@@ -243,26 +243,28 @@ async function startServer() {
     fs.writeFileSync(filePath, JSON.stringify(payload, null, 2), "utf-8");
   };
 
-  // Data API Routes — Supabase Storage when configured, local JSON fallback
+  // Data API Routes — local JSON first, then Supabase Storage as fallback
   app.get("/api/data/:type", async (req, res) => {
     const { type } = req.params;
+
+    // Prefer local file so edits to src/data/*.json are always reflected
+    try {
+      const data = readLocalData(type);
+      if (data) return res.json(data);
+    } catch (e) {
+      console.warn(`Local read failed for ${type}, trying Supabase:`, e);
+    }
 
     if (isSupabaseStorageConfigured) {
       try {
         const data = await fetchDataFromStorage(type);
         return res.json(data);
       } catch (storageError) {
-        console.warn(`Supabase read failed for ${type}, falling back to local file:`, storageError);
+        console.warn(`Supabase read failed for ${type}:`, storageError);
       }
     }
 
-    try {
-      const data = readLocalData(type);
-      if (data) return res.json(data);
-      return res.status(404).json({ error: "File not found" });
-    } catch (e) {
-      return res.status(500).json({ error: "Failed to parse data" });
-    }
+    return res.status(404).json({ error: "File not found" });
   });
 
   app.post("/api/data/:type", async (req, res) => {
@@ -277,10 +279,13 @@ async function startServer() {
     const token = authHeader!.slice(7);
 
     try {
+      // Always save to local file so the GET endpoint (local-first) returns fresh data
+      writeLocalData(type, req.body);
+      // Also sync to Supabase if configured
       if (isSupabaseStorageConfigured) {
-        await saveDataToStorage(type, req.body, token);
-      } else {
-        writeLocalData(type, req.body);
+        await saveDataToStorage(type, req.body, token).catch(e => {
+          console.warn(`Supabase save failed for ${type}:`, e);
+        });
       }
       res.json({ success: true });
     } catch (e) {

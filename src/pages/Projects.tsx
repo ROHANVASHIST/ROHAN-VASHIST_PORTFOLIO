@@ -18,7 +18,7 @@ export default function Projects() {
       project.technologies.forEach(tech => techs.add(tech));
     });
     return Array.from(techs).sort();
-  }, []);
+  }, [projectsData]);
 
   const filteredProjects = useMemo(() => {
     return projectsData.projects.filter(project => {
@@ -27,7 +27,7 @@ export default function Projects() {
                            project.description.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesTech && matchesSearch;
     });
-  }, [selectedTech, searchQuery]);
+  }, [selectedTech, searchQuery, projectsData]);
 
   const getStatusColor = (status: string) => {
     switch(status) {
