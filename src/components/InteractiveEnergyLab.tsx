@@ -229,7 +229,7 @@ export default function InteractiveEnergyLab() {
   }, [coolingDelta, airFlowScale, solarArea]);
 
   return (
-    <div className="bg-white dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all">
+    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all">
       {/* Tab Selectors */}
       <div className="flex border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-gray-950/20 p-2 gap-1">
         <button
@@ -350,7 +350,7 @@ export default function InteractiveEnergyLab() {
               </div>
 
               {/* Solved Chemical Output Block */}
-              <div className="bg-gray-50 dark:bg-white/5 border border-gray-150 dark:border-white/5 rounded-3xl p-6 grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 rounded-3xl p-6 grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block">Compressibility (Z)</span>
                   <span className="text-2xl font-black font-mono text-gray-800 dark:text-gray-100">{h2Metrics.compressibilityZ}</span>
@@ -379,14 +379,14 @@ export default function InteractiveEnergyLab() {
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">Calculated at live P/T</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block">Energy Volume</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     {h2Metrics.energyMJ} <span className="text-xs font-bold font-sans text-gray-400">MJ</span>
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">({h2Metrics.energyKwh} kWh energy equivalent)</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block">FCEV Vehicle Range</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     ~{h2Metrics.mileage} <span className="text-xs font-bold font-sans text-gray-400">km</span>
@@ -396,7 +396,7 @@ export default function InteractiveEnergyLab() {
               </div>
 
               {/* Plot rendering density vs Pressure */}
-              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-150 dark:border-white/5 flex-grow">
+              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-100 dark:border-white/5 flex-grow">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h4 className="font-bold text-gray-800 dark:text-gray-200 text-sm flex items-center gap-1.5">
@@ -405,7 +405,7 @@ export default function InteractiveEnergyLab() {
                     </h4>
                     <p className="text-[10px] text-gray-400">Real Gas State (Cyan) vs Ideal Gas State (Dotted Slate)</p>
                   </div>
-                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-150 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
+                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
                     T = {tempCelsius}°C
                   </span>
                 </div>
@@ -572,14 +572,14 @@ export default function InteractiveEnergyLab() {
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">Carbon locked from atmospheric air</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block font-bold">Specific Thermal Duty</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     {dacMetrics.thermalGJPerTonne} <span className="text-xs font-bold font-zinc-400">GJ/t</span>
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">Gigajoules heat per tonne CO2</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block">Yearly Tree Offset Eq</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     {dacMetrics.trees} <span className="text-xs font-bold font-sans text-gray-400">x</span>
@@ -589,7 +589,7 @@ export default function InteractiveEnergyLab() {
               </div>
 
               {/* Chart of Capture capacity over varying inlet concentration */}
-              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-150 dark:border-white/5 flex-grow">
+              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-100 dark:border-white/5 flex-grow">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h4 className="font-bold text-gray-800 dark:text-gray-200 text-sm flex items-center gap-1.5">
@@ -598,7 +598,7 @@ export default function InteractiveEnergyLab() {
                     </h4>
                     <p className="text-[10px] text-gray-400">Base Loop Output (Cyan) vs Thermodynamic Optimized Catalyst Loop (Slate)</p>
                   </div>
-                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-150 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
+                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
                     Kiln = {calcTemperature}°C
                   </span>
                 </div>
@@ -754,7 +754,7 @@ export default function InteractiveEnergyLab() {
               </div>
 
               {/* Distillation thermodynamics details */}
-              <div className="bg-gray-50 dark:bg-white/5 border border-gray-150 dark:border-white/5 rounded-3xl p-6 grid grid-cols-2 gap-4">
+              <div className="bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 rounded-3xl p-6 grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block">Performance Ratio (PR)</span>
                   <span className="text-2xl font-black font-mono text-gray-800 dark:text-gray-100">{desalMetrics.performanceRatio}</span>
@@ -781,14 +781,14 @@ export default function InteractiveEnergyLab() {
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">Pure distilled freshwater</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 font-extrabold uppercase tracking-wider block font-bold">Specific Thermal Duty</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     {desalMetrics.stecKwhM3} <span className="text-xs font-bold font-zinc-400">kWh/m³</span>
                   </span>
                   <span className="text-[10px] text-gray-400 dark:text-gray-500 block">Required thermal energy input bound</span>
                 </div>
-                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-150 dark:border-white/5 rounded-2xl">
+                <div className="p-5 bg-gray-50 dark:bg-white/3 border border-gray-100 dark:border-white/5 rounded-2xl">
                   <span className="text-[10px] text-gray-400 dark:text-gray-400 font-extrabold uppercase tracking-wider block">Solar Thermal Power</span>
                   <span className="text-3xl font-black font-mono text-gray-800 dark:text-gray-100 block my-1">
                     {desalMetrics.solarHeatKw} <span className="text-xs font-bold font-sans text-gray-400">kW</span>
@@ -798,7 +798,7 @@ export default function InteractiveEnergyLab() {
               </div>
 
               {/* Chart of Freshwater yield vs solar collector inlet temperatures */}
-              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-150 dark:border-white/5 flex-grow">
+              <div className="bg-gray-50 dark:bg-white/3 rounded-3xl p-6 border border-gray-100 dark:border-white/5 flex-grow">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h4 className="font-bold text-gray-800 dark:text-gray-200 text-sm flex items-center gap-1.5">
@@ -807,7 +807,7 @@ export default function InteractiveEnergyLab() {
                     </h4>
                     <p className="text-[10px] text-gray-400">Multi-Stage HDH Yield (Cyan) vs Non-Recycling Traditional Solar Basin Still (Slate)</p>
                   </div>
-                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-150 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
+                  <span className="text-[10px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/10 text-gray-500 dark:text-gray-450 px-2.5 py-1 rounded-lg font-mono">
                     Area = {solarArea} m²
                   </span>
                 </div>

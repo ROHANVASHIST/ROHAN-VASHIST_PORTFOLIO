@@ -82,7 +82,7 @@ export default function ChatBot() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 26, stiffness: 220 }}
-            className="fixed top-0 right-0 h-screen w-full sm:w-[440px] bg-white dark:bg-gray-900 border-l border-gray-100 dark:border-gray-850 z-[150] flex flex-col shadow-2xl overflow-hidden transition-colors font-sans"
+            className="fixed top-0 right-0 h-screen w-full sm:w-[440px] bg-white dark:bg-gray-900 border-l border-gray-100 dark:border-gray-800 z-[150] flex flex-col shadow-2xl overflow-hidden transition-colors font-sans"
             id="chat-sidebar"
           >
             {/* Sidebar Header */}
@@ -157,7 +157,7 @@ export default function ChatBot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask a question..."
-                  className="w-full pl-5 pr-14 py-3.5 bg-white dark:bg-gray-901 border border-gray-100 dark:border-gray-800 rounded-2xl text-sm focus:ring-2 focus:ring-cyan-600 outline-none text-gray-900 dark:text-white transition-all shadow-xs"
+                  className="w-full pl-5 pr-14 py-3.5 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl text-sm focus:ring-2 focus:ring-cyan-600 outline-none text-gray-900 dark:text-white transition-all shadow-xs"
                 />
                 <button
                   type="submit"

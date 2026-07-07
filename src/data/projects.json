@@ -5,11 +5,11 @@
       "title": "SEO Generator",
       "description": "An enterprise-grade SEO content cluster generator that researches keywords, builds semantic hub-and-spoke graphs, drafts long-form copy, and injects contextual anchors. Features a contrast-adaptive UI with Minimalist Daylight / Cyberpunk Slate themes, Google SERP preview simulations, and one-click export. Built as part of my Prompt Engineer Internship at Future Intern.",
       "technologies": ["React", "TypeScript", "Node.js", "Google Gemini AI", "Tailwind CSS", "Express"],
-      "image": "/images/projects/seo.png",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1432889821006-3149403b3d5a?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_03",
       "demo": "",
@@ -25,11 +25,11 @@
       "title": "Website Generator",
       "description": "A premier AI-powered platform for generating production-ready React/TypeScript codebases with Tailwind CSS from raw data. Features a Neural Engine Synthesis powered by Google Gemini 1.5 Pro, Aesthetic Matrix UI, and a Blueprint Protocol that takes designs from concept to deployment. Built during my Prompt Engineer Internship at Future Intern.",
       "technologies": ["React", "TypeScript", "Google Gemini AI", "Tailwind CSS", "Express", "Motion"],
-      "image": "/images/projects/website-generator.png",
+      "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_01",
       "demo": "",
@@ -45,11 +45,11 @@
       "title": "UGC Ad Generator",
       "description": "A high-converting UGC ad pack generator for D2C brands and content creators. Features an intelligent Gemini copywriter engine with 5 psychology-triggered hook styles (Vulnerable Confessions, Contrarian Claims, Specific Results, Direct Address, Curiosity Gaps), P.A.S.C. video script framework, and omnichannel adaptation for Instagram Reels, Meta Feed Ads, and YouTube Shorts. Export to PDF, ZIP, or clipboard. Built during my Prompt Engineer Internship at Future Intern.",
       "technologies": ["React", "TypeScript", "Google Gemini AI", "Node.js", "Tailwind CSS", "Express", "jspdf"],
-      "image": "/images/projects/ugc-ad.png",
+      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_02",
       "demo": "",
@@ -65,11 +65,11 @@
       "title": "KeilHQ",
       "description": "Building solutions at QUILD that streamline workflows and enhance productivity through AI-driven tools that bridge technology and business growth.",
       "technologies": ["AI/ML", "TypeScript", "React", "Node.js", "Python"],
-      "image": "/images/projects/keilhq.png",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -85,11 +85,11 @@
       "title": "PodSoft",
       "description": "Designing tools at QUILD that make content creation and distribution smarter and more efficient through AI-driven orchestration.",
       "technologies": ["AI/ML", "React", "Node.js", "Cloud Infrastructure"],
-      "image": "/images/projects/podsoft.png",
+      "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -105,11 +105,11 @@
       "title": "AI for Energy Consumption",
       "description": "Developed insights into scalable solutions for energy-efficient infrastructure management using AI and machine learning techniques. Research project at USCT, GGSIPU.",
       "technologies": ["Python", "Machine Learning", "Data Analysis", "Energy Systems"],
-      "image": "/images/projects/energy-ai.png",
+      "image": "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -125,11 +125,11 @@
       "title": "Electrochemical Water Splitting",
       "description": "Researched hydrogen production methods using electrochemical processes to advance clean energy solutions. Honors research project at USCT, GGSIPU.",
       "technologies": ["Python", "Electrochemical Analysis", "Cyclic Voltammetry", "Data Analysis"],
-      "image": "/images/projects/water-splitting.png",
+      "image": "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -145,11 +145,11 @@
       "title": "CO₂ Reduction Technologies",
       "description": "Investigated innovative approaches for carbon capture and reduction to support climate change mitigation. Honors research project at USCT, GGSIPU.",
       "technologies": ["Python", "Data Analysis", "Chemical Engineering", "Research Methodology"],
-      "image": "/images/projects/co2-reduction.png",
+      "image": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -165,11 +165,11 @@
       "title": "White Hydrogen – Scope in India",
       "description": "Explored the potential of naturally occurring hydrogen reserves in India, assessing feasibility and future opportunities for clean energy development.",
       "technologies": ["Research", "Data Analysis", "Energy Policy", "Hydrogen Technology"],
-      "image": "/images/projects/white-hydrogen.png",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -185,11 +185,11 @@
       "title": "Concierge – Chat Application",
       "description": "A cross-device chat application that solves connection issues between multiple devices. Simply login on any device and start chatting to transfer information seamlessly. Built as a real-time communication platform.",
       "technologies": ["TypeScript", "React", "Node.js", "Socket.io", "WebSockets"],
-      "image": "/images/projects/liveat.png",
+      "image": "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/liveat-",
       "demo": "",
@@ -205,11 +205,11 @@
       "title": "Nobel Hub",
       "description": "A comprehensive platform to discover Nobel laureate profiles, explore Nobel lectures, breakthrough research papers, and powerful analytics — all in one beautiful interface.",
       "technologies": ["TypeScript", "React", "Vite", "Data Visualization", "REST API"],
-      "image": "/images/projects/nobel-hub.png",
+      "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/NOBEL-HUB",
       "demo": "",
@@ -225,11 +225,11 @@
       "title": "Protein Atlas Prognosis",
       "description": "A platform for exploring protein expression data and analyzing prognostic markers in biomedical research.",
       "technologies": ["TypeScript", "Bioinformatics", "React", "Data Analysis"],
-      "image": "/images/projects/protein-atlas.png",
+      "image": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/protein-atlas-prognosis",
       "demo": "",
@@ -245,11 +245,11 @@
       "title": "PodSoft Studio",
       "description": "A professional-grade web-based video production and streaming studio inspired by OBS Studio. Features multi-scene management with drag-and-drop sources (Camera, Display Capture, DroidCam via MJPEG), Studio Mode with Preview/Program switching, audio mixer, real-time filters and effects (brightness, contrast), and local recording to .webm via the MediaRecorder API. Includes AI scene analysis powered by Google Gemini.",
       "technologies": ["React", "TypeScript", "Google Gemini AI", "Tailwind CSS", "Express", "Motion", "MediaRecorder API", "WebRTC"],
-      "image": "/images/projects/podsoft-studio.png",
+      "image": "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/PODSOFT_V1",
       "demo": "",
@@ -265,11 +265,11 @@
       "title": "Nobel Hub Nexus",
       "description": "An enhanced iteration of the Nobel Hub platform with expanded database integration. Features comprehensive Nobel laureate analytics, research paper integration, and an interactive dashboard with PostgreSQL-backed data storage for richer content management.",
       "technologies": ["TypeScript", "React", "PostgreSQL", "Vite", "shadcn/ui", "Tailwind CSS"],
-      "image": "/images/projects/nobel-nexus.png",
+      "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&q=80&w=1200",
-        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1200"
+        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/noble-hub-nexus",
       "demo": "",

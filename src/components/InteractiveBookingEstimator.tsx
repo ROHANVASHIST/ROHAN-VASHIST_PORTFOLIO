@@ -99,7 +99,7 @@ export default function InteractiveBookingEstimator() {
                 className={`py-3 px-2 text-center text-xs font-bold rounded-2xl border transition-all cursor-pointer ${
                   projectType === t.id 
                     ? 'bg-white dark:bg-gray-900 border-cyan-600/30 dark:border-cyan-400/20 text-cyan-600 dark:text-cyan-400 shadow-lg shadow-cyan-600/5' 
-                    : 'bg-transparent border-gray-150 dark:border-white/5 text-gray-600 hover:bg-gray-100/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
+                    : 'bg-transparent border-gray-100 dark:border-white/5 text-gray-600 hover:bg-gray-100/50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 {t.label}
@@ -128,7 +128,7 @@ export default function InteractiveBookingEstimator() {
                 className={`py-2 px-1 text-center text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                   complexity === c.level 
                     ? 'bg-cyan-550/15 border-cyan-600/30 text-cyan-600 dark:text-cyan-400' 
-                    : 'bg-transparent border-gray-150 dark:border-white/5 text-gray-400 hover:bg-gray-100/40 dark:hover:bg-white/5'
+                    : 'bg-transparent border-gray-100 dark:border-white/5 text-gray-400 hover:bg-gray-100/40 dark:hover:bg-white/5'
                 }`}
               >
                 {c.label}
@@ -158,7 +158,7 @@ export default function InteractiveBookingEstimator() {
         </div>
 
         {/* Calculated result estimate panel */}
-        <div className="p-6 bg-white dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-3xl flex justify-between items-center shadow-md">
+        <div className="p-6 bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-3xl flex justify-between items-center shadow-md">
           <div className="space-y-1">
             <span className="text-[10px] font-black text-gray-400 uppercase tracking-wider flex items-center gap-1">
               <Calculator size={11} /> Calculated Model Sizing
@@ -201,7 +201,7 @@ export default function InteractiveBookingEstimator() {
                     value={bookingDate}
                     onChange={(e) => setBookingDate(e.target.value)}
                     min="2026-05-26"
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-901 border border-gray-150 dark:border-white/5 rounded-2xl text-xs font-bold text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-cyan-600 outline-none"
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-2xl text-xs font-bold text-gray-700 dark:text-gray-300 focus:ring-2 focus:ring-cyan-600 outline-none"
                   />
                 </div>
               </div>
@@ -221,7 +221,7 @@ export default function InteractiveBookingEstimator() {
                           ? 'bg-gray-50 dark:bg-gray-950/25 border-gray-100 dark:border-white/5 text-gray-300 dark:text-gray-600 cursor-not-allowed opacity-60 line-through' 
                           : selectedSlot === slot.id
                             ? 'bg-cyan-600 border-cyan-600 text-white shadow-md shadow-cyan-600/10'
-                            : 'bg-white dark:bg-gray-901 border-gray-150 dark:border-white/5 text-gray-600 hover:bg-gray-55/60 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white cursor-pointer'
+                            : 'bg-white dark:bg-gray-900 border-gray-100 dark:border-white/5 text-gray-600 hover:bg-gray-55/60 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white cursor-pointer'
                       }`}
                     >
                       <span className="flex items-center gap-2">
@@ -243,7 +243,7 @@ export default function InteractiveBookingEstimator() {
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
                     placeholder="Dr. Jordan"
-                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-901 border border-gray-150 dark:border-white/5 rounded-xl text-xs text-gray-800 dark:text-white focus:ring-1 focus:ring-cyan-600 outline-none"
+                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-xl text-xs text-gray-800 dark:text-white focus:ring-1 focus:ring-cyan-600 outline-none"
                   />
                 </div>
                 <div className="space-y-1">
@@ -254,7 +254,7 @@ export default function InteractiveBookingEstimator() {
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     placeholder="jordan@lab.org"
-                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-901 border border-gray-150 dark:border-white/5 rounded-xl text-xs text-gray-800 dark:text-white focus:ring-1 focus:ring-cyan-600 outline-none"
+                    className="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-xl text-xs text-gray-800 dark:text-white focus:ring-1 focus:ring-cyan-600 outline-none"
                   />
                 </div>
               </div>

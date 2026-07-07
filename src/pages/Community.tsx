@@ -23,7 +23,7 @@ export default function Community() {
               <Flame size={14} className="text-cyan-600 animate-pulse" /> National Youth Initiatives
             </h3>
             
-            <div className="p-8 bg-gray-50/50 dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
+            <div className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-600/5 blur-3xl rounded-full" />
               
               <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 transition-colors">
@@ -47,7 +47,7 @@ export default function Community() {
               </div>
             </div>
 
-            <div className="p-8 bg-gray-50/50 dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
+            <div className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-3xl rounded-full" />
               
               <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 transition-colors">
@@ -95,7 +95,7 @@ export default function Community() {
             </div>
           </section>
 
-          <section className="p-8 bg-gray-50 rounded-[2.5rem] border border-gray-100 dark:border-gray-850 dark:bg-gray-901 flex gap-3 text-xs text-gray-500">
+          <section className="p-8 bg-gray-50 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 dark:bg-gray-900 flex gap-3 text-xs text-gray-500">
             <Sparkles size={16} className="text-cyan-500 flex-shrink-0 mt-0.5" />
             <span>Interested in launching a local climate-tech initiative in your area? Let's join forces and build secure regional tools.</span>
           </section>

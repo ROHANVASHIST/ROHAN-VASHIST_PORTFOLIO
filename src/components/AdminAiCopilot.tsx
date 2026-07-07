@@ -121,7 +121,7 @@ export default function AdminAiCopilot() {
                   onClick={() => {
                     setInput(p.prompt);
                   }}
-                  className="flex items-start gap-4 p-4 text-left bg-white dark:bg-gray-901 hover:bg-gray-50 dark:hover:bg-white/5 border border-gray-100 dark:border-white/5 rounded-2xl transition-all cursor-pointer group hover:scale-[1.01]"
+                  className="flex items-start gap-4 p-4 text-left bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-white/5 border border-gray-100 dark:border-white/5 rounded-2xl transition-all cursor-pointer group hover:scale-[1.01]"
                 >
                   <div className={`p-2 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/5 group-hover:scale-110 transition-transform ${p.color}`}>
                     <Icon size={18} />
@@ -145,7 +145,7 @@ export default function AdminAiCopilot() {
         </div>
 
         {/* AI Studio Interface */}
-        <div className="lg:col-span-8 flex flex-col h-[550px] bg-white dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-3xl overflow-hidden shadow-xs">
+        <div className="lg:col-span-8 flex flex-col h-[550px] bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-3xl overflow-hidden shadow-xs">
           {/* Studio Header */}
           <div className="px-6 py-4 border-b border-gray-100 dark:border-white/5 bg-gray-50/50 dark:bg-gray-950/20 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -238,7 +238,7 @@ export default function AdminAiCopilot() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask your copilot to write copy, draft templates, generate items..."
                 rows={2}
-                className="w-full pl-5 pr-14 py-4 bg-white dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-2xl text-sm focus:ring-2 focus:ring-cyan-500 outline-none text-gray-900 dark:text-white transition-all shadow-xs resize-none"
+                className="w-full pl-5 pr-14 py-4 bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-2xl text-sm focus:ring-2 focus:ring-cyan-500 outline-none text-gray-900 dark:text-white transition-all shadow-xs resize-none"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();

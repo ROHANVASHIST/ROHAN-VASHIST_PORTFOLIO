@@ -66,7 +66,7 @@ async function startServer() {
 
     try {
       const chat = ai.chats.create({
-        model: "gemini-3.1-flash-lite", // Using a fast, efficient model for simple Q&A
+        model: "gemini-2.0-flash", // Using a fast, efficient model for simple Q&A
         config: {
           systemInstruction,
         },
@@ -132,7 +132,7 @@ async function startServer() {
       `;
 
       const chat = ai.chats.create({
-        model: "gemini-3.5-flash",
+        model: "gemini-2.5-flash",
         config: {
           systemInstruction: adminSystemInstruction,
         },

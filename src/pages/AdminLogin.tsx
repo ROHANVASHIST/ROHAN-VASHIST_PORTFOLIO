@@ -89,7 +89,7 @@ export default function AdminLogin() {
 
   return (
     <main className="min-h-screen max-w-lg mx-auto py-24 px-6 font-sans bg-gray-50 dark:bg-gray-950">
-      <div className="bg-white dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-3xl p-8 shadow-xl">
+      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-3xl p-8 shadow-xl">
         <h1 className="text-3xl font-black mb-2 text-gray-900 dark:text-white">Admin Access Portal</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 border-b dark:border-gray-800 pb-4">
           {isSignup 

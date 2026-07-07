@@ -553,7 +553,7 @@ export default function ClimateFeasibilityLab() {
                 <span className="text-[10px] text-gray-400 block mt-1">Infrastructure setup bound</span>
               </div>
 
-              <div className="p-6 bg-gray-50 dark:bg-gray-901 border border-gray-150 dark:border-white/5 rounded-[2rem]">
+              <div className="p-6 bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2rem]">
                 <span className="text-[10px] text-gray-400 dark:text-gray-500 font-black uppercase tracking-wider block font-bold">Annual Operational OpEx</span>
                 <span className="text-2xl font-black font-mono text-gray-900 dark:text-white block mt-1.5 leading-none">
                   ${(financialProjection.ongoingOpEx / 1000).toLocaleString(undefined, {maximumFractionDigits:1})}k<span className="text-xs font-sans text-gray-400">/yr</span>
@@ -571,7 +571,7 @@ export default function ClimateFeasibilityLab() {
             </div>
 
             {/* Recharts Area Chart showing return vs time */}
-            <div className="bg-gray-50 dark:bg-gray-901 rounded-[2.5rem] p-8 border border-gray-150 dark:border-white/5 flex-grow relative overflow-hidden">
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] p-8 border border-gray-100 dark:border-white/5 flex-grow relative overflow-hidden">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 relative z-10">
                 <div>
                   <h4 className="font-extrabold text-gray-900 dark:text-white text-base flex items-center gap-2">
@@ -645,7 +645,7 @@ export default function ClimateFeasibilityLab() {
             </div>
 
             {/* Bottom informational metrics footer */}
-            <div className="grid md:grid-cols-2 gap-6 bg-gray-50/50 dark:bg-gray-901 rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 md:p-8 text-xs leading-relaxed text-gray-500">
+            <div className="grid md:grid-cols-2 gap-6 bg-gray-50/50 dark:bg-gray-900 rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 md:p-8 text-xs leading-relaxed text-gray-500">
               <div className="space-y-2">
                 <span className="font-extrabold uppercase tracking-wider text-gray-400 dark:text-gray-600 block text-[10px]">Strategic Carbon Offsets</span>
                 <p className="text-semibold text-gray-650 dark:text-gray-300">

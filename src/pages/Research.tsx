@@ -44,7 +44,7 @@ export default function Research() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="p-8 bg-gray-50/50 dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-3xl"
+            className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-3xl"
           >
             <div className="w-10 h-10 bg-cyan-600/10 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6">
               <stat.icon size={18} />

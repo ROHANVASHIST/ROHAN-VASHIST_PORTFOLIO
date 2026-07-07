@@ -95,7 +95,7 @@ export default function ResearchHub() {
           return (
             <div 
               key={pub.id}
-              className="bg-gray-50/50 dark:bg-gray-901 border border-gray-100 dark:border-white/5 rounded-[2rem] overflow-hidden hover:border-cyan-600/20 transition-all font-sans"
+              className="bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2rem] overflow-hidden hover:border-cyan-600/20 transition-all font-sans"
             >
               <div 
                 onClick={() => toggleExpand(pub.id)}
