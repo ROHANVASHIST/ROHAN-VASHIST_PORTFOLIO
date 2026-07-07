@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Search, Calendar, Clock, ArrowRight, Tag, Plus, X } from 'lucide-react';
+import { Search, Calendar, Clock, ArrowRight, Tag, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getBlogPosts, BlogPost } from '../lib/blogStore';
-import NewPostModal from '../components/NewPostModal';
-
 const CATEGORIES = ["All", "Engineering", "Software", "Sustainability", "AI"];
 
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -41,10 +38,6 @@ export default function Blog() {
     setPosts(getBlogPosts());
   }, []);
 
-  const handlePostCreated = (newPost: BlogPost) => {
-    setPosts(getBlogPosts());
-  };
-
   const filteredPosts = posts.filter(post => {
     const matchesCategory = activeCategory === "All" || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -67,14 +60,6 @@ export default function Blog() {
             Deep dives into the intersection of engineering complexity and digital simplicity. 
             Sharing what I learn about AI, sustainability, and software craft.
           </p>
-        </div>
-        <div className="flex-shrink-0 self-start md:self-center">
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-6 py-4 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-xl shadow-cyan-600/20 hover:scale-[1.02] active:scale-95 transition-all text-xs uppercase tracking-widest cursor-pointer"
-          >
-            <Plus size={16} /> Add Publication
-          </button>
         </div>
       </div>
 
@@ -239,11 +224,6 @@ export default function Blog() {
         </div>
       </section>
 
-      <NewPostModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onPostCreated={handlePostCreated} 
-      />
     </main>
   );
 }
