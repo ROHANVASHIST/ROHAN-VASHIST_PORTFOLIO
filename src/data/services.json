@@ -19,6 +19,26 @@
       "title": "Prompt Engineering & AI Tools",
       "description": "Specialized AI prompt engineering and tool development to automate workflows, generate content, and optimize business processes using cutting-edge AI/ML technologies.",
       "deliverables": ["AI-powered content generators", "Workflow automation tools", "Custom AI/ML solutions", "Prompt optimization strategies"]
+    },
+    {
+      "title": "Data Center Energy Optimization",
+      "description": "Strategic analysis and optimization of data center energy consumption, cooling efficiency, and carbon footprint reduction using AI-driven monitoring and predictive analytics.",
+      "deliverables": ["Energy audit & benchmarking", "AI-driven cooling optimization", "Carbon footprint assessment", "Efficiency improvement roadmap"]
+    },
+    {
+      "title": "Climate Tech MVP Development",
+      "description": "Rapid prototyping of climate technology minimum viable products — from IoT sensor integration to energy modeling dashboards and sustainability analytics platforms.",
+      "deliverables": ["MVP architecture design", "Full-stack prototype build", "Energy modeling dashboards", "Sensor data integration"]
+    },
+    {
+      "title": "AI/ML Model Development & Integration",
+      "description": "End-to-end machine learning model development including data preprocessing, model training, evaluation, and seamless API integration into existing web platforms.",
+      "deliverables": ["Custom ML model training", "Data pipeline architecture", "REST API integration", "Model performance monitoring"]
+    },
+    {
+      "title": "Technical Documentation & Knowledge Management",
+      "description": "Comprehensive technical writing and knowledge management services — from API documentation and system architecture guides to research publications and grant proposals.",
+      "deliverables": ["API & system documentation", "Research paper authoring", "Knowledge base setup", "Grant & proposal writing"]
     }
   ]
 }
