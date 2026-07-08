@@ -15,9 +15,9 @@ export default function Resume() {
             Professional <br /> Experience.
           </h2>
         </div>
-        <button className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black flex items-center gap-2 hover:scale-105 transition-all shadow-xl active:scale-95">
+        <a href="/RESUME%20ROHAN%20VASHIST.pdf" download className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black flex items-center gap-2 hover:scale-105 transition-all shadow-xl active:scale-95 inline-flex">
           <Download size={20} /> Download PDF
-        </button>
+        </a>
       </div>
       
       <div className="grid lg:grid-cols-12 gap-16">

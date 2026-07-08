@@ -43,7 +43,7 @@ export default function About() {
               An AI Engineer Intern and Researcher with a solid foundation in Energy Engineering, Renewable Energy, and Hydrogen Technologies, seamlessly combined with hands-on experience in full-stack software development. Passionate about advancing clean energy solutions—including data center energy optimization, electrochemical water splitting, and carbon capture. Experienced in building AI-powered productivity tools, SEO generators, and web platforms while demonstrating proven leadership as a global program scholar, campus ambassador, and community volunteer.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="/resume" className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black flex items-center gap-2 hover:scale-105 transition-all shadow-xl active:scale-95">
+              <a href="/RESUME%20ROHAN%20VASHIST.pdf" download className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-black flex items-center gap-2 hover:scale-105 transition-all shadow-xl active:scale-95">
                 <Download size={20} /> Download CV
               </a>
               <a href="/contact" className="px-8 py-4 bg-white dark:bg-white/5 text-gray-900 dark:text-white border border-gray-100 dark:border-white/10 rounded-2xl font-black flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-white/10 transition-all active:scale-95">
