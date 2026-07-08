@@ -8,7 +8,7 @@
       "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
       "images": [
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1432889821006-3149403b3d5a?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_03",
@@ -28,7 +28,7 @@
       "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&auto=format&fit=crop&q=80",
       "images": [
         "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_01",
@@ -48,7 +48,7 @@
       "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
       "images": [
         "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/FUTURE_PE_02",
@@ -68,7 +68,7 @@
       "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80",
       "images": [
         "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
@@ -88,7 +88,7 @@
       "image": "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&auto=format&fit=crop&q=80",
       "images": [
         "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1551288049-bbbda536ad89?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
@@ -165,11 +165,11 @@
       "title": "White Hydrogen – Scope in India",
       "description": "Explored the potential of naturally occurring hydrogen reserves in India, assessing feasibility and future opportunities for clean energy development.",
       "technologies": ["Research", "Data Analysis", "Energy Policy", "Hydrogen Technology"],
-      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&auto=format&fit=crop&q=80",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200&auto=format&fit=crop&q=80"
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "",
       "demo": "",
@@ -245,11 +245,11 @@
       "title": "PodSoft Studio",
       "description": "A professional-grade web-based video production and streaming studio inspired by OBS Studio. Features multi-scene management with drag-and-drop sources (Camera, Display Capture, DroidCam via MJPEG), Studio Mode with Preview/Program switching, audio mixer, real-time filters and effects (brightness, contrast), and local recording to .webm via the MediaRecorder API. Includes AI scene analysis powered by Google Gemini.",
       "technologies": ["React", "TypeScript", "Google Gemini AI", "Tailwind CSS", "Express", "Motion", "MediaRecorder API", "WebRTC"],
-      "image": "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?w=800&auto=format&fit=crop&q=80",
+      "image": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
       "images": [
-        "https://images.unsplash.com/photo-1598899134730-5c9d3585c0e2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&auto=format&fit=crop&q=80",
         "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&auto=format&fit=crop&q=80",
-        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80"
       ],
       "github": "https://github.com/ROHANVASHIST/PODSOFT_V1",
       "demo": "",
