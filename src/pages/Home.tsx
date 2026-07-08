@@ -364,8 +364,8 @@ function ProgressRing({ value, label, size = 80, strokeWidth = 5, color = 'strok
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-2">
-      <svg width={size} height={size} className="transform -rotate-90">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="currentColor" strokeWidth={strokeWidth} className="text-white/5" />
+       <svg width={size} height={size} className="transform -rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="currentColor" strokeWidth={strokeWidth} className="text-gray-200 dark:text-white/5" />
         <motion.circle
           cx={size / 2} cy={size / 2} r={r} fill="none"
           strokeWidth={strokeWidth} strokeLinecap="round"
@@ -374,16 +374,20 @@ function ProgressRing({ value, label, size = 80, strokeWidth = 5, color = 'strok
           strokeDashoffset={offset}
           initial={false}
         />
-        <motion.text
+        <text
           x={size / 2} y={size / 2}
           textAnchor="middle" dominantBaseline="central"
-          className="fill-white text-xs font-bold"
-          transform="rotate(90, 50, 50)"
+          transform="rotate(90, 40, 40)"
         >
-          {Math.round(progress)}%
-        </motion.text>
+          <tspan x={size / 2} dy="-5" className="fill-gray-800 dark:fill-white text-sm font-black">
+            {Math.round(progress)}
+          </tspan>
+          <tspan x={size / 2} dy="10" className="fill-gray-400 dark:fill-gray-500 text-[7px] font-bold">
+            %
+          </tspan>
+        </text>
       </svg>
-      <span className="text-[10px] font-bold text-white/40 uppercase tracking-wider">{label}</span>
+      <span className="text-[10px] font-bold text-gray-500 dark:text-white/40 uppercase tracking-wider">{label}</span>
     </div>
   );
 }
@@ -687,9 +691,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
-      <GlowTrail />
       <ScrollProgressBar />
-      <SpotlightEffect />
 
       {/* Hero Section */}
       <section 
@@ -927,10 +929,10 @@ export default function Home() {
         <section className="py-12 px-6 bg-white dark:bg-gray-950 transition-colors">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-4 md:grid-cols-4 gap-6 justify-items-center">
-              <ProgressRing value={92} label="Code" color="stroke-cyan-400" />
-              <ProgressRing value={85} label="DevOps" color="stroke-purple-400" />
-              <ProgressRing value={78} label="ML/AI" color="stroke-emerald-400" />
-              <ProgressRing value={88} label="Research" color="stroke-amber-400" />
+              <ProgressRing value={92} label="Software Eng." color="stroke-cyan-400" />
+              <ProgressRing value={85} label="DevOps & Cloud" color="stroke-purple-400" />
+              <ProgressRing value={78} label="AI & ML Research" color="stroke-emerald-400" />
+              <ProgressRing value={88} label="R&D Innovation" color="stroke-amber-400" />
             </div>
           </div>
         </section>
