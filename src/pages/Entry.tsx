@@ -127,9 +127,9 @@ function AnimatedCounter({ value, suffix = '', label = '' }: { value: number; su
   }, [value, hasAnimated]);
 
   return (
-    <motion.div ref={ref} whileHover={{ scale: 1.08, y: -3 }} className="text-center px-5 py-3 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/10 transition-all duration-300 cursor-default">
-      <div className="text-xl font-black bg-gradient-to-r from-cyan-300 to-purple-300 bg-clip-text text-transparent">{count}{suffix}</div>
-      <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider mt-0.5">{label}</div>
+    <motion.div ref={ref} whileHover={{ scale: 1.08, y: -3 }} className="text-center px-5 py-3 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-white/10 hover:border-cyan-500/30 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-default">
+      <div className="text-xl font-black bg-gradient-to-r from-cyan-400 to-purple-400 dark:from-cyan-300 dark:to-purple-300 bg-clip-text text-transparent">{count}{suffix}</div>
+      <div className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-wider mt-0.5">{label}</div>
     </motion.div>
   );
 }
@@ -222,12 +222,13 @@ export default function Entry() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white relative overflow-hidden">
       <SpotlightEffect />
       <FloatingOrbs />
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      <div className="absolute inset-0 opacity-[0.03] hidden dark:block" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       <FloatingParticles count={25} />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-950 opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-950 opacity-100" />
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-6">
         <div className="max-w-5xl w-full">
@@ -237,13 +238,13 @@ export default function Entry() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-400 uppercase tracking-widest mb-6 border border-cyan-500/20"
+              className="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-widest mb-6 border border-cyan-500/20"
             >
               <Sparkles className="w-3 h-3 animate-pulse" /> Digital Portfolio v2.0
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4 leading-[0.95]">
-              <AnimatedWords text="Welcome to" className="text-white" />{' '}
+              <AnimatedWords text="Welcome to" className="text-gray-900 dark:text-white" />{' '}
               <motion.span
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -258,7 +259,7 @@ export default function Entry() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed min-h-[1.5em]"
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed min-h-[1.5em]"
             >
               <TypewriterText text="AI Engineer Intern & Clean Energy Researcher — bridging full-stack development with renewable energy innovation." delay={1.2} />
             </motion.p>
@@ -279,7 +280,7 @@ export default function Entry() {
                 <motion.div
                   key={idx}
                   whileHover={{ scale: 1.06, y: -2 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 backdrop-blur-sm rounded-xl text-xs font-medium text-gray-300 border border-white/10 hover:border-cyan-500/30 hover:bg-white/10 transition-all duration-300 cursor-default"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-xl text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10 hover:border-cyan-500/30 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 cursor-default"
                 >
                   <item.icon className="w-3 h-3 text-cyan-400" /> {item.text}
                 </motion.div>
@@ -312,22 +313,55 @@ export default function Entry() {
                   rel="noopener noreferrer"
                   whileHover={{ y: -4, scale: 1.15 }}
                   whileTap={{ scale: 0.9 }}
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/15 hover:border-cyan-500/40 transition-all duration-300 group"
+                  className="p-3 rounded-xl bg-white/80 dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-cyan-500/40 transition-all duration-300 group"
                 >
-                  <item.icon className="w-4 h-4 text-gray-400 group-hover:text-cyan-300 transition-colors" />
+                  <item.icon className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 transition-colors" />
                 </motion.a>
               ))}
             </div>
           </SectionReveal>
 
-          {/* Choice cards */}
+          {/* Award Recognition */}
           <SectionReveal delay={2.4}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col md:flex-row items-center gap-8 mb-16 p-6 md:p-8 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-white/10"
+            >
+              <div className="relative shrink-0">
+                <div className="w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-lg shadow-amber-500/10">
+                  <img
+                    src="/cm%20photo.jpg"
+                    alt="Award ceremony with CM Rekha Gupta"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center shadow-lg">
+                  <Award className="w-4 h-4 text-white" />
+                </div>
+              </div>
+              <div className="text-center md:text-left">
+                <p className="text-xs font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2">Honored by Hon'ble CM of Delhi</p>
+                <h3 className="text-lg font-black text-gray-900 dark:text-white mb-1">
+                  Awarded by Smt. Rekha Gupta Ji
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
+                  Recognized for outstanding contribution in technology and innovation at the prestigious state-level ceremony.
+                </p>
+              </div>
+            </motion.div>
+          </SectionReveal>
+
+          {/* Choice cards */}
+          <SectionReveal delay={2.6}>
             <div className="text-center mb-8">
               <motion.p
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em]"
+                className="text-xs font-bold text-gray-600 dark:text-gray-500 uppercase tracking-[0.25em]"
               >
                 — How would you like to proceed? —
               </motion.p>
@@ -346,7 +380,7 @@ export default function Entry() {
               <TiltCard>
                 <button
                   onClick={() => handleSelect('viewer')}
-                  className="group relative w-full flex flex-col items-center p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+                  className="group relative w-full flex flex-col items-center p-8 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-white/10 hover:border-cyan-500/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <motion.div
@@ -356,8 +390,8 @@ export default function Entry() {
                   >
                     <User className="w-8 h-8 text-cyan-400" />
                   </motion.div>
-                  <h2 className="text-xl font-bold text-white mb-2 relative">I am a Viewer</h2>
-                  <p className="text-sm text-gray-400 text-center leading-relaxed relative max-w-xs">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 relative">I am a Viewer</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 text-center leading-relaxed relative max-w-xs">
                     Explore projects, research in clean energy & AI, professional experience, technical skills, and blog articles.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 mt-5 relative">
@@ -368,7 +402,7 @@ export default function Entry() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 2.8 + idx * 0.05 }}
-                        className="px-2.5 py-0.5 bg-white/5 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-wider group-hover:text-cyan-400 transition-colors"
+                        className="px-2.5 py-0.5 bg-gray-100 dark:bg-white/5 rounded-lg text-[10px] font-bold text-gray-600 dark:text-gray-500 uppercase tracking-wider group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors"
                       >
                         {tag}
                       </motion.span>
@@ -392,7 +426,7 @@ export default function Entry() {
               <TiltCard>
                 <button
                   onClick={() => handleSelect('admin')}
-                  className="group relative w-full flex flex-col items-center p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:border-purple-500/50 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+                  className="group relative w-full flex flex-col items-center p-8 bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-white/10 hover:border-purple-500/50 hover:bg-gray-50 dark:hover:bg-white/10 transition-all duration-300 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <motion.div
@@ -402,8 +436,8 @@ export default function Entry() {
                   >
                     <ShieldUser className="w-8 h-8 text-purple-400" />
                   </motion.div>
-                  <h2 className="text-xl font-bold text-white mb-2 relative">I am the Admin</h2>
-                  <p className="text-sm text-gray-400 text-center leading-relaxed relative max-w-xs">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 relative">I am the Admin</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 text-center leading-relaxed relative max-w-xs">
                     Securely log in to manage portfolio content, update projects, edit pages, and oversee analytics.
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 mt-5 relative">
@@ -414,7 +448,7 @@ export default function Entry() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 2.9 + idx * 0.05 }}
-                        className="px-2.5 py-0.5 bg-white/5 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-wider group-hover:text-purple-400 transition-colors"
+                        className="px-2.5 py-0.5 bg-gray-100 dark:bg-white/5 rounded-lg text-[10px] font-bold text-gray-600 dark:text-gray-500 uppercase tracking-wider group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors"
                       >
                         {tag}
                       </motion.span>
@@ -431,8 +465,8 @@ export default function Entry() {
           {/* Footer note */}
           <SectionReveal delay={3.0}>
             <motion.p
-              className="text-center mt-16 text-[11px] text-gray-600 font-medium tracking-wider"
-              whileHover={{ color: '#9ca3af' }}
+              className="text-center mt-16 text-[11px] text-gray-400 dark:text-gray-600 font-medium tracking-wider"
+              whileHover={{ color: '#6b7280' }}
             >
               Built with precision engineering &middot; Rohan Vashist &copy; {new Date().getFullYear()}
             </motion.p>
