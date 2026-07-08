@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Award, Heart, Globe, Users, Star, Flame, Sparkles, Navigation } from 'lucide-react';
+import { Award, Heart, Globe, Users, Star, Flame, Sparkles, Navigation, FlaskConical, BookOpen } from 'lucide-react';
 
 export default function Community() {
   return (
@@ -67,6 +67,85 @@ export default function Community() {
                 <div className="flex items-start gap-2.5">
                   <Star size={16} className="text-purple-600 flex-shrink-0" />
                   <span>Shared open source models of thermal swing adsorption beds for study.</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Campus & Community Leadership */}
+          <section className="space-y-6">
+            <h3 className="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest flex items-center gap-2">
+              <Heart size={14} className="text-rose-600 animate-pulse" /> Campus & Community Leadership
+            </h3>
+
+            <div className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-rose-600/5 blur-3xl rounded-full" />
+
+              <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-rose-600 transition-colors">
+                Srijan Science Club, GGSIPU
+              </h4>
+              <p className="text-xs text-rose-600 dark:text-rose-400 font-bold uppercase tracking-wider mb-6">Active Member & Volunteer</p>
+
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 font-semibold">
+                Contributing to the university's premier science club by organizing and participating in technical workshops, science exhibitions, and interdisciplinary research discussions. Engaged in knowledge-sharing sessions on renewable energy technologies, fostering scientific temper among peers.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 border-t border-gray-100 dark:border-white/5 pt-6 text-xs text-gray-400">
+                <div className="flex items-start gap-2.5">
+                  <FlaskConical size={16} className="text-rose-600 flex-shrink-0" />
+                  <span>Conducted peer-led workshops on emerging energy technologies and laboratory techniques.</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Users size={16} className="text-rose-600 flex-shrink-0" />
+                  <span>Collaborated with fellow researchers to promote hands-on learning and innovation culture on campus.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-600/5 blur-3xl rounded-full" />
+
+              <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 transition-colors">
+                National Service Scheme (NSS), GGSIPU
+              </h4>
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider mb-6">Active Volunteer</p>
+
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 font-semibold">
+                Volunteering under the NSS framework to drive community welfare initiatives, blood donation camps, cleanliness drives, and digital literacy programs in underserved communities. Committed to the motto "Not Me, But You" through regular service activities.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 border-t border-gray-100 dark:border-white/5 pt-6 text-xs text-gray-400">
+                <div className="flex items-start gap-2.5">
+                  <Heart size={16} className="text-emerald-600 flex-shrink-0" />
+                  <span>Participated in community outreach drives promoting health, hygiene, and environmental awareness.</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Globe size={16} className="text-emerald-600 flex-shrink-0" />
+                  <span>Contributed to campus greening initiatives and sustainable waste management efforts.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 bg-gray-50/50 dark:bg-gray-900 border border-gray-100 dark:border-white/5 rounded-[2.5rem] relative group overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/5 blur-3xl rounded-full" />
+
+              <h4 className="text-2xl font-black text-gray-900 dark:text-white mb-2 group-hover:text-amber-600 transition-colors">
+                CSR Club Teaching Initiative
+              </h4>
+              <p className="text-xs text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider mb-6">Teacher, Unprivileged Students Teaching Course</p>
+
+              <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 font-semibold">
+                Serving as a dedicated educator under the CSR Club's teaching initiative, providing free academic instruction to underprivileged students. Designing simplified curricula in science, mathematics, and English to bridge educational gaps and empower students with foundational knowledge for future opportunities.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 border-t border-gray-100 dark:border-white/5 pt-6 text-xs text-gray-400">
+                <div className="flex items-start gap-2.5">
+                  <BookOpen size={16} className="text-amber-600 flex-shrink-0" />
+                  <span>Developed accessible lesson plans tailored to diverse learning levels and backgrounds.</span>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <Award size={16} className="text-amber-600 flex-shrink-0" />
+                  <span>Mentored students beyond academics, fostering confidence, curiosity, and a growth mindset.</span>
                 </div>
               </div>
             </div>
