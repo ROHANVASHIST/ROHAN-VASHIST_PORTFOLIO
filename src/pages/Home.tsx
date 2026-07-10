@@ -690,7 +690,7 @@ export default function Home() {
   const featuredProjects = [...projectsData.projects].sort((a, b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1)).slice(0, 3);
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden -mt-24 md:-mt-28">
       <ScrollProgressBar />
 
       {/* Hero Section */}

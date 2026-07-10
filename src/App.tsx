@@ -74,7 +74,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div ref={containerRef} className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pt-24 md:pt-28">
         <AnimatePresence mode="wait">
           <AnimatedPage key={location.pathname}>
             {children}

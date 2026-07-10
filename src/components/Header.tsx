@@ -19,7 +19,6 @@ const NAV_LINKS = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(true);
   const location = useLocation();
   const tickingRef = useRef(false);
 
@@ -27,9 +26,7 @@ export default function Header() {
     const handleScroll = () => {
       if (!tickingRef.current) {
         requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setIsScrolled(scrollY > 20);
-          setIsAtTop(scrollY < 5);
+          setIsScrolled(window.scrollY > 20);
           tickingRef.current = false;
         });
         tickingRef.current = true;
@@ -38,7 +35,6 @@ export default function Header() {
 
     // Set initial state
     setIsScrolled(window.scrollY > 20);
-    setIsAtTop(window.scrollY < 5);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -74,9 +70,7 @@ export default function Header() {
             <span className={`hidden sm:block font-black text-xl tracking-tight transition-colors duration-300 ${
               isScrolled 
                 ? 'text-gray-900 dark:text-white' 
-                : isAtTop 
-                  ? 'text-white' 
-                  : 'text-gray-900 dark:text-white'
+                : 'text-gray-900 dark:text-white'
             }`}>
               Rohan Vashist
             </span>
@@ -91,7 +85,7 @@ export default function Header() {
                     relative px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200
                     ${location.pathname === link.path 
                       ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-50/50 dark:bg-cyan-900/20' 
-                      : `hover:bg-gray-100 dark:hover:bg-white/5 ${isScrolled ? 'text-gray-600 dark:text-gray-400' : isAtTop ? 'text-gray-200' : 'text-gray-600 dark:text-gray-400'}`
+                      : `hover:bg-gray-100 dark:hover:bg-white/5 ${isScrolled ? 'text-gray-600 dark:text-gray-400' : 'text-gray-600 dark:text-gray-400'}`
                     }
                   `}
                 >
@@ -118,7 +112,7 @@ export default function Header() {
               lg:hidden p-2 rounded-2xl transition-all duration-200
               ${isScrolled 
                 ? 'bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white' 
-                : 'bg-white/10 backdrop-blur-md text-white border border-white/20'
+                : 'bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-200 dark:border-white/10'
               }
             `}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
