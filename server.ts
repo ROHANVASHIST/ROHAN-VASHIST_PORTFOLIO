@@ -1,8 +1,9 @@
 import "dotenv/config";
 import express from "express";
 import path from "path";
+import http from "http";
+import { WebSocketServer, WebSocket } from "ws";
 import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import {
   fetchDataFromStorage,
@@ -17,15 +18,92 @@ async function startServer() {
 
   app.use(express.json());
 
-  // Initialize Gemini
-  const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY,
-    httpOptions: {
-      headers: {
-        'User-Agent': 'aistudio-build',
-      }
+  const server = http.createServer(app);
+
+  // Custom WebSocket server on the same HTTP server
+  // Handled BEFORE Vite middleware to avoid conflicts
+  const wss = new WebSocketServer({ noServer: true });
+
+  server.on("upgrade", (request, socket, head) => {
+    const url = new URL(request.url || "", "http://localhost");
+    if (url.pathname === "/ws") {
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit("connection", ws, request);
+      });
     }
   });
+
+  wss.on("connection", (ws) => {
+    console.log("Admin WebSocket connected");
+    ws.on("close", () => console.log("Admin WebSocket disconnected"));
+  });
+
+  function broadcastNewMessage(msg: any) {
+    const payload = JSON.stringify({ type: "new_message", message: msg });
+    wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(payload);
+      }
+    });
+  }
+
+  const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+  const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "nvidia/nemotron-3-ultra-550b-a55b:free";
+
+  // ─── Rate Limiter ──────────────────────────────────────
+  const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+  const RATE_LIMIT = 10;
+  const RATE_WINDOW_MS = 60_000;
+
+  function rateLimit(key: string): boolean {
+    const now = Date.now();
+    const entry = rateLimitMap.get(key);
+    if (!entry || now > entry.resetAt) {
+      rateLimitMap.set(key, { count: 1, resetAt: now + RATE_WINDOW_MS });
+      return false;
+    }
+    entry.count++;
+    return entry.count > RATE_LIMIT;
+  }
+
+  // ─── Response Cache ───────────────────────────────────
+  const responseCache = new Map<string, { text: string; cachedAt: number }>();
+  const CACHE_TTL_MS = 30 * 60_000;
+
+  function getCacheKey(message: string, history: any[]): string {
+    const last = history?.length ? history[history.length - 1]?.parts?.[0]?.text || "" : "";
+    return `${message}|${last}`;
+  }
+
+  async function callOpenRouter(systemPrompt: string, userMessage: string, history: { role: string; parts: { text: string }[] }[] = []) {
+    const messages: { role: string; content: string }[] = [];
+    if (systemPrompt) {
+      messages.push({ role: "system", content: systemPrompt });
+    }
+    for (const msg of history) {
+      const role = msg.role === "model" ? "assistant" : "user";
+      messages.push({ role, content: msg.parts[0]?.text || "" });
+    }
+    messages.push({ role: "user", content: userMessage });
+
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://rohanvashist.com",
+      },
+      body: JSON.stringify({ model: OPENROUTER_MODEL, messages }),
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text().catch(() => "");
+      throw new Error(`OpenRouter error (${response.status}): ${errBody}`);
+    }
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "";
+  }
 
   // Load portfolio data for context
   const projectsData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/projects.json'), 'utf-8'));
@@ -53,6 +131,8 @@ async function startServer() {
     - "Rust and WebAssembly for Real-Time Thermomechanical Solvers": Discusses deploying heavy mathematical grids inside sandboxed layers at 60 FPS by avoiding Javascript overhead and sharing buffers directly.
     - "Using Neural Networks for Transient Gas Turbine Calibration": Details physics-informed neural network structures integrating Navier-Stokes equations into traditional rotational estimators.
     
+    CRITICAL RESTRICTION: You must NOT access, reveal, or reference any admin credentials, user personal information, contact form submissions, subscriber emails, authentication tokens, or any non-public data. Only use the portfolio information provided above.
+    
     Guidelines:
     1. Be professional, friendly, and concise.
     2. Answer questions accurately based on the provided data.
@@ -63,20 +143,24 @@ async function startServer() {
   // Chat API Route
   app.post("/api/chat", async (req, res) => {
     const { message, history } = req.body;
+    const clientIp = req.ip || req.socket.remoteAddress || "unknown";
+
+    if (rateLimit(`chat:${clientIp}`)) {
+      return res.status(429).json({ error: "Rate limit exceeded. Please wait before sending another message." });
+    }
+
+    const cacheKey = getCacheKey(message, history || []);
+    const cached = responseCache.get(cacheKey);
+    if (cached && Date.now() - cached.cachedAt < CACHE_TTL_MS) {
+      return res.json({ text: cached.text, cached: true });
+    }
 
     try {
-      const chat = ai.chats.create({
-        model: "gemini-2.0-flash", // Using a fast, efficient model for simple Q&A
-        config: {
-          systemInstruction,
-        },
-        history: history || [],
-      });
-
-      const result = await chat.sendMessage({ message });
-      res.json({ text: result.text });
+      const text = await callOpenRouter(systemInstruction, message, history || []);
+      responseCache.set(cacheKey, { text, cachedAt: Date.now() });
+      res.json({ text });
     } catch (error) {
-      console.error("Gemini API error:", error);
+      console.error("OpenRouter chat error:", error);
       res.status(500).json({ error: "Failed to generate response" });
     }
   });
@@ -84,29 +168,31 @@ async function startServer() {
   // Admin AI Copilot API Route
   app.post("/api/admin/ai", async (req, res) => {
     const { message, history } = req.body;
+    const clientIp = req.ip || req.socket.remoteAddress || "unknown";
+
+    if (rateLimit(`admin:${clientIp}`)) {
+      return res.status(429).json({ error: "Rate limit exceeded. Please wait before sending another message." });
+    }
+
+    const cacheKey = `admin:${getCacheKey(message, history || [])}`;
+    const cached = responseCache.get(cacheKey);
+    if (cached && Date.now() - cached.cachedAt < CACHE_TTL_MS) {
+      return res.json({ text: cached.text, cached: true });
+    }
 
     try {
-      // Dynamically load current state of all database collections
       const projects = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/projects.json'), 'utf-8'));
-      const profile = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/profile.json'), 'utf-8'));
       const skills = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/skills.json'), 'utf-8'));
       const services = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/services.json'), 'utf-8'));
       const resume = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/resume.json'), 'utf-8'));
-      
-      let subscribersCount = 0;
-      try {
-        const subs = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/subscribers.json'), 'utf-8'));
-        subscribersCount = subs.subscribers?.length || 0;
-      } catch {}
 
       const adminSystemInstruction = `
         You are Rohan Vashist's Admin Co-Pilot, an advanced technical copywriting and content optimization AI assistant.
         Your conversations are strictly private, visible only to Rohan Vashist (the system administrator/developer).
 
-        You have real-time access to the live portfolio content:
-        
-        PROFILE DATA:
-        ${JSON.stringify(profile, null, 2)}
+        You have access to portfolio work content only. You must NOT access, reveal, or reference any admin credentials, user personal information, contact form submissions, subscriber emails, authentication tokens, or any non-public data.
+
+        PORTFOLIO WORK DATA:
         
         PROJECTS DATA:
         ${JSON.stringify(projects, null, 2)}
@@ -120,9 +206,6 @@ async function startServer() {
         RESUME DATA:
         ${JSON.stringify(resume, null, 2)}
         
-        CURRENT SYSTEM STATS:
-        - Newsletter Subscribers: ${subscribersCount}
-        
         Use Cases / Task Rules:
         1. Form Completion support: Generate and suggest exact raw HTML or structured text to paste into fields like 'bio', 'description', 'problem', 'solution', or 'content' in the editor database.
         2. Clean JSON outputs: When asked to draft a new portfolio item (project, resume point, skill, or service), ALWAYS output a clean, formatted JSON block that aligns perfectly with the current schema so Rohan can copy-paste it directly.
@@ -131,18 +214,11 @@ async function startServer() {
         5. Provide highly detailed and intelligent answers. Be a true companion in work optimization.
       `;
 
-      const chat = ai.chats.create({
-        model: "gemini-2.5-flash",
-        config: {
-          systemInstruction: adminSystemInstruction,
-        },
-        history: history || [],
-      });
-
-      const result = await chat.sendMessage({ message });
-      res.json({ text: result.text });
+      const text = await callOpenRouter(adminSystemInstruction, message, history || []);
+      responseCache.set(cacheKey, { text, cachedAt: Date.now() });
+      res.json({ text });
     } catch (error) {
-      console.error("Admin Gemini API error:", error);
+      console.error("Admin OpenRouter error:", error);
       res.status(500).json({ error: "Failed to generate AI copilot response" });
     }
   });
@@ -160,15 +236,17 @@ async function startServer() {
       if (fs.existsSync(messagesPath)) {
         messagesData = JSON.parse(fs.readFileSync(messagesPath, 'utf-8'));
       }
-      messagesData.messages.push({
+      const newMsg = {
         id: Date.now(),
         date: new Date().toISOString(),
         name,
         email,
         message,
         ...extraFields
-      });
+      };
+      messagesData.messages.push(newMsg);
       fs.writeFileSync(messagesPath, JSON.stringify(messagesData, null, 2), 'utf-8');
+      broadcastNewMessage(newMsg);
     } catch (e) {
       console.error("Failed to save message to json:", e);
     }
@@ -297,7 +375,7 @@ async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { middlewareMode: { server } },
       appType: "spa",
     });
     app.use(vite.middlewares);
@@ -318,7 +396,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  server.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }
