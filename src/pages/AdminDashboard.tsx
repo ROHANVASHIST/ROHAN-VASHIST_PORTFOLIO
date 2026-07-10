@@ -4,6 +4,7 @@ import { logout, getAccessToken } from '../lib/auth';
 import { LayoutDashboard, LogOut, Save, FileJson, AlertCircle, Sparkles } from 'lucide-react';
 import JsonFormEditor from '../components/JsonFormEditor';
 import AdminAiCopilot from '../components/AdminAiCopilot';
+import AdminInbox from '../components/AdminInbox';
 
 const DATA_TYPES = ['profile', 'projects', 'resume', 'services', 'skills', 'messages', 'subscribers'];
 
@@ -93,7 +94,7 @@ export default function AdminDashboard() {
   const CONTENT_TYPES = ['profile', 'projects', 'resume', 'services', 'skills'];
 
   return (
-    <main className="max-w-4xl mx-auto py-32 px-6">
+    <main className="max-w-4xl mx-auto py-8 px-6">
       {/* Admin Panel Header */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-8 border-b border-gray-100 dark:border-white/5">
         <div className="flex items-center gap-4">
@@ -162,7 +163,7 @@ export default function AdminDashboard() {
         )}
         
         {activeTab === 'inbox' && (
-          <DataEditor type="messages" />
+          <AdminInbox />
         )}
         
         {activeTab === 'subscribers' && (
